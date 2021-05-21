@@ -8,7 +8,7 @@ void main() {
       theme: ThemeData(
           primaryColor: Colors.deepPurple
       ),
-      initialRoute: RouteGenerator.ROTA_HOME,
+      initialRoute: "/",
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false
   ));
