@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legendary_app/RouteGenerator.dart';
 
 class HomePageView extends StatefulWidget {
 
@@ -11,11 +12,16 @@ class _HomePageViewState extends State<HomePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: Text("Home"),
         ),
         body: Center(
-          child: Text("Página modelo para Rotas")
-        )
-    );
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS);
+              },
+              child: const Text('Legendas'),
+          )
+    ));
   }
 }
