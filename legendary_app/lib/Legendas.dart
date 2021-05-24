@@ -7,6 +7,12 @@ class LegendasView extends StatefulWidget {
 }
 
 class _LegendasViewState extends State<LegendasView> {
+
+  // String _legenda = "Entrar";
+  // String _titulo = "musica";
+  // bool _categoria = true;
+  // bool _favorito = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
