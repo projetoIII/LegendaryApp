@@ -8,10 +8,10 @@ class LegendaCard extends StatelessWidget {
   final bool favorito;
 
   LegendaCard({
-    this.legenda = "",
-    this.titulo = "",
-    this.categoria = true,
-    this.favorito = false,
+      this.legenda = "",
+      this.titulo = "",
+      this.categoria = true,
+      this.favorito = true,
   });
 
   @override
@@ -82,8 +82,7 @@ class LegendaCard extends StatelessWidget {
                           : Icon(Icons.favorite_border, size: 30),
                       color: Colors.white,
                       onPressed: () {
-
-
+                        // setState((){});
                       })
                 ],
               ),

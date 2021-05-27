@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
@@ -127,22 +130,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621563601063" />
-    <state width="1323" height="130" key="GridCell.Tab.0.bottom" timestamp="1621815476020">
+    <state width="1323" height="169" key="GridCell.Tab.0.bottom" timestamp="1622122669767">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="130" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621815476020" />
-    <state width="1323" height="130" key="GridCell.Tab.0.center" timestamp="1621815476020">
+    <state width="1323" height="169" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1622122669767" />
+    <state width="1323" height="169" key="GridCell.Tab.0.center" timestamp="1622122669766">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="130" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621815476020" />
-    <state width="1323" height="130" key="GridCell.Tab.0.left" timestamp="1621815476020">
+    <state width="1323" height="169" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
+    <state width="1323" height="169" key="GridCell.Tab.0.left" timestamp="1622122669766">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="130" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621815476020" />
-    <state width="1323" height="130" key="GridCell.Tab.0.right" timestamp="1621815476020">
+    <state width="1323" height="169" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
+    <state width="1323" height="169" key="GridCell.Tab.0.right" timestamp="1622122669766">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="130" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621815476020" />
+    <state width="1323" height="169" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1621563649327">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -151,5 +154,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="390" y="97" width="585" height="534" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1621801433663" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1622121699463">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1622121699463" />
   </component>
 </project>
