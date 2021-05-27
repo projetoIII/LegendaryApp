@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 class LegendaCard extends StatelessWidget {
 
-  // final String legenda = ;
-  // final String titulo;
-  // final bool categoria;
-  // final bool favorito;
-  //
-  // LegendaCard({
-  //   @required this.legenda,
-  //   @required this.titulo,
-  //   @required this.categoria,
-  //   @required this.favorito,
-  // });
+  final String legenda;
+  final String titulo;
+  final bool categoria;
+  final bool favorito;
+
+  LegendaCard({
+    @required this.legenda = "",
+    @required this.titulo = "",
+    @required this.categoria = true,
+    @required this.favorito = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,17 @@ class LegendaCard extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Icon(Icons.music_note, size: 30, color: Colors.white,),
+              child: this.categoria
+                  ? Icon(
+                    Icons.music_note,
+                    size: 30,
+                    color: Colors.white,
+                  )
+                  : Icon(
+                Icons.menu_book_rounded,
+                size: 30,
+                color: Colors.white,
+              )
             ),
           ),
           SizedBox(
@@ -48,18 +58,18 @@ class LegendaCard extends StatelessWidget {
                       child: Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                  "Teste",
+                                  this.legenda,
                                   style: TextStyle(
-                                      color: Colors.white
+                                      color: Colors.black
                                   )),
                               Padding(padding: EdgeInsets.only(top: 10)),
                               Text(
-                                  "Titulo",
+                                  this.titulo,
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold
                                   )),
                             ],
@@ -67,9 +77,12 @@ class LegendaCard extends StatelessWidget {
                       )
                   ),
                   IconButton(
-                      icon: Icon(Icons.favorite_border, size: 30),
+                      icon: this.favorito
+                          ? Icon(Icons.favorite, size: 30)
+                          : Icon(Icons.favorite_border, size: 30),
                       color: Colors.white,
                       onPressed: () {
+
 
                       })
                 ],

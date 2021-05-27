@@ -8,10 +8,10 @@ class LegendasView extends StatefulWidget {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  // String _legenda = "Entrar";
-  // String _titulo = "musica";
-  // bool _categoria = true;
-  // bool _favorito = false;
+  String _legenda = "Let the sun illuminate the word that you could not find";
+  String _titulo = "Unwritten, Natasha Bedingfield";
+  bool _categoria = true;
+  bool _favorito = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,12 @@ class _LegendasViewState extends State<LegendasView> {
       ),
       body: Column(
         children: <Widget>[
-          LegendaCard()
+          LegendaCard(
+            legenda: _legenda,
+            titulo: _titulo,
+            categoria: _categoria,
+            favorito: _favorito,
+          )
         ],
       ),
     );
