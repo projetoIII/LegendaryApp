@@ -8,10 +8,10 @@ class LegendaCard extends StatelessWidget {
   final bool favorito;
 
   LegendaCard({
-    @required this.legenda = "",
-    @required this.titulo = "",
-    @required this.categoria = true,
-    @required this.favorito = true,
+    this.legenda = "",
+    this.titulo = "",
+    this.categoria = true,
+    this.favorito = false,
   });
 
   @override

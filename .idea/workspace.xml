@@ -31,7 +31,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a56c3913-ad7e-4c93-bd12-c19af854c372" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/legendary_app/lib/Legendas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Legendas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/widgets/LegendaCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/widgets/LegendaCard.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
