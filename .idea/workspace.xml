@@ -34,6 +34,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a56c3913-ad7e-4c93-bd12-c19af854c372" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/Legendas.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Legendas.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/widgets/LegendaCard.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/widgets/LegendaCard.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +42,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\thays\.android\avd\Nexus_5X_API_30_7.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\thays\.android\avd\Nexus_5X_API_30_8.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -122,30 +123,30 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1621562357561" />
-    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1621812207816">
+    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1622156327776">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1621812207816" />
+    <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1622156327776" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1621563601063">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621563601063" />
-    <state width="1323" height="169" key="GridCell.Tab.0.bottom" timestamp="1622122669767">
+    <state width="1323" height="144" key="GridCell.Tab.0.bottom" timestamp="1622128100342">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="169" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1622122669767" />
-    <state width="1323" height="169" key="GridCell.Tab.0.center" timestamp="1622122669766">
+    <state width="1323" height="144" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1622128100342" />
+    <state width="1323" height="144" key="GridCell.Tab.0.center" timestamp="1622128100341">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="169" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
-    <state width="1323" height="169" key="GridCell.Tab.0.left" timestamp="1622122669766">
+    <state width="1323" height="144" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1622128100341" />
+    <state width="1323" height="144" key="GridCell.Tab.0.left" timestamp="1622128100341">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="169" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
-    <state width="1323" height="169" key="GridCell.Tab.0.right" timestamp="1622122669766">
+    <state width="1323" height="144" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1622128100341" />
+    <state width="1323" height="144" key="GridCell.Tab.0.right" timestamp="1622128100342">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="169" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1622122669766" />
+    <state width="1323" height="144" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1622128100342" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1621563649327">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -29,6 +29,12 @@ class _LegendasViewState extends State<LegendasView> {
             titulo: _titulo,
             categoria: _categoria,
             favorito: _favorito,
+            onFavorite: (bool val){
+              setState((){
+                val = !val;
+                _favorito = val;
+              });
+            },
           )
         ],
       ),
