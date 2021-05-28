@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:legendary_app/widgets/LegendaCard.dart';
+import 'package:legendary_app/widgets/TagBusca.dart';
 
 class LegendasView extends StatefulWidget {
   @override
@@ -8,6 +10,7 @@ class LegendasView extends StatefulWidget {
 
 class _LegendasViewState extends State<LegendasView> {
 
+  List<String> _tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
   String _legenda = "Let the sun illuminate the word that you could not find";
   String _titulo = "Unwritten, Natasha Bedingfield";
   bool _categoria = true;
@@ -22,21 +25,27 @@ class _LegendasViewState extends State<LegendasView> {
         elevation: 0,
         title: Text('LEGENDAS')
       ),
-      body: Column(
-        children: <Widget>[
-          LegendaCard(
-            legenda: _legenda,
-            titulo: _titulo,
-            categoria: _categoria,
-            favorito: _favorito,
-            onFavorite: (bool val){
-              setState((){
-                val = !val;
-                _favorito = val;
-              });
-            },
-          )
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            TagBusca(
+              tags: _tags,
+            ),
+            LegendaCard(
+              legenda: _legenda,
+              titulo: _titulo,
+              categoria: _categoria,
+              favorito: _favorito,
+              onFavorite: (bool val){
+                setState((){
+                  val = !val;
+                  _favorito = val;
+                });
+              },
+            )
+          ],
+        ),
       ),
     );
   }
