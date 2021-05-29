@@ -11,7 +11,7 @@ class TagBusca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+        padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
         child: Wrap(
           children: tags.map((tag) {
             return Container(

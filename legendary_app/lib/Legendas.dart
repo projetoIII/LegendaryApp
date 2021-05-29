@@ -23,29 +23,35 @@ class _LegendasViewState extends State<LegendasView> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        title: Text('LEGENDAS')
+        title: Text('LEGENDAS'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
-        child: Column(
-          children: <Widget>[
-            TagBusca(
-              tags: _tags,
-            ),
-            LegendaCard(
-              legenda: _legenda,
-              titulo: _titulo,
-              categoria: _categoria,
-              favorito: _favorito,
-              onFavorite: (bool val){
-                setState((){
-                  val = !val;
-                  _favorito = val;
-                });
-              },
-            )
-          ],
-        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TagBusca(
+                tags: _tags,
+              ),
+              LegendaCard(
+                legenda: _legenda,
+                titulo: _titulo,
+                categoria: _categoria,
+                favorito: _favorito,
+                onFavorite: (bool val){
+                  setState((){
+                    val = !val;
+                    _favorito = val;
+                  });
+                },
+              ),
+            ],
+          ),
+        )
       ),
     );
   }
