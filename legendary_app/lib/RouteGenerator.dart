@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:legendary_app/Home.dart';
+import 'package:legendary_app/CarregarImagem.dart';
 
 class RouteGenerator {
 
@@ -15,11 +16,11 @@ class RouteGenerator {
     switch(settings.name){
       case ROTA_HOME:
         return MaterialPageRoute(
-            builder: (_) => HomePageView()
+            builder: (_) => UploadImagePage()
         );
       default:
         return MaterialPageRoute(
-            builder: (_) => HomePageView()
+            builder: (_) => UploadImagePage()
         );
     }
 

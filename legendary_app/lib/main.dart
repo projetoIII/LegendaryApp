@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:legendary_app/Home.dart';
 import 'RouteGenerator.dart';
+import 'package:legendary_app/CarregarImagem.dart';
+
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-      home: HomePageView(),
+      home: UploadImagePage(),
       theme: ThemeData(
           primaryColor: Colors.deepPurple
       ),
