@@ -11,7 +11,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = ["Perfil", "Favoritos", "Sair"];
+  List<String> tags = ["TESTE1"];
   List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
 
   void _showMessage(BuildContext context, String text) {
