@@ -181,8 +181,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
               ),
             ),
             Positioned(
-              top: 535,
-              left: 180,
+              top: MediaQuery.of(context).size.height / 1.27,
+              left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
                   _chooseGaleryImage();
