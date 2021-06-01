@@ -6,7 +6,9 @@ void main() {
   runApp(MaterialApp(
       home: HomePageView(),
       theme: ThemeData(
-          primaryColor: Colors.deepPurple
+          appBarTheme: AppBarTheme(
+            color: Color(0xFFCE93D8)
+          )
       ),
       initialRoute: "/",
       onGenerateRoute: RouteGenerator.generateRoute,
