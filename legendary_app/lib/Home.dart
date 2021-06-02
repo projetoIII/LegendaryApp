@@ -14,7 +14,7 @@ class _HomePageViewState extends State<HomePageView> {
           title: Text("Home"),
         ),
         body: Center(
-          child: Text("Página modelo para Rotas")
+            child: Text("Página modelo para Rotas")
         )
     );
   }

@@ -14,7 +14,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink,
+      backgroundColor: Colors.grey,
       body: Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
@@ -40,7 +40,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
           ),
         ),
         child: Container(
-          margin: EdgeInsets.all(4.0),
+          // margin: EdgeInsets.all(4.0),
           alignment: Alignment.bottomCenter,
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -69,8 +69,8 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
-                        hintStyle: TextStyle( fontSize: 18.0,color: Colors.deepPurple),
-                        labelStyle: TextStyle(color: Colors.deepPurple)
+                        hintStyle: TextStyle( fontSize: 18.0,color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple)
                     )
                 ),
                 TextFormField(
@@ -79,8 +79,8 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'E-mail',
-                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.deepPurple),
-                        labelStyle: TextStyle(color: Colors.deepPurple)
+                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple)
                     )
                 ),
                 TextFormField(
@@ -89,8 +89,8 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Senha',
-                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.deepPurple),
-                        labelStyle: TextStyle(color: Colors.deepPurple)
+                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple)
                     )
                 ),
                 new Expanded(
@@ -100,7 +100,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                   child: new Text(
                     '< Voltar',
                     textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
                     print('voltar');
@@ -109,18 +109,12 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                   },
                 ),
               ],
-
             ),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,);
-
-
-
   }
-
-
 }
 
 

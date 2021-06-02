@@ -20,7 +20,7 @@ class RouteGenerator {
     switch(settings.name){
       case ROTA_HOME:
         return MaterialPageRoute(
-            builder: (_) => CadastrarPageView()
+            builder: (_) => HomePageView()
         );
       case ROTA_ENTRADA:
         return MaterialPageRoute(
@@ -32,7 +32,7 @@ class RouteGenerator {
         );
       default:
         return MaterialPageRoute(
-            builder: (_) => CadastrarPageView()
+            builder: (_) => HomePageView()
         );
     }
 

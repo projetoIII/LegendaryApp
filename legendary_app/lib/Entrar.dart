@@ -14,7 +14,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellowAccent,
+      backgroundColor: Color(0xffc3b383),
       body: new Stack(
         children: <Widget>[
           new Container(
@@ -41,7 +41,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
           ),
         ],
       ),
-
       floatingActionButton: FloatingActionButton(
           onPressed: () {  },
           child:
@@ -58,7 +57,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
           ),
         ),
         child: Container(
-          margin: EdgeInsets.all(4.0),
           alignment: Alignment.bottomCenter,
           decoration: new BoxDecoration(
               color: Colors.white,
@@ -82,14 +80,13 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                 new Expanded(
                   child: Container(),
                 ),
-
                 TextFormField(
                     autofocus: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
-                        hintStyle: TextStyle( fontSize: 18.0,color: Colors.deepPurple),
-                        labelStyle: TextStyle(color: Colors.deepPurple)
+                        hintStyle: TextStyle( fontSize: 18.0,color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple)
                     )
                 ),
                 TextFormField(
@@ -98,8 +95,8 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Senha',
-                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.deepPurple),
-                        labelStyle: TextStyle(color: Colors.deepPurple)
+                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple)
                     )
                 ),
                 new Expanded(
@@ -117,7 +114,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   child: new Text(
                     'Cadastre-se',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
                     print('cadastro');
@@ -126,18 +123,12 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   },
                 ),
               ],
-
             ),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,);
-
-
-
   }
-
-
 }
 
 
