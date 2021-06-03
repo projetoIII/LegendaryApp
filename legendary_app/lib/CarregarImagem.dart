@@ -11,7 +11,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = ["TESTE1"];
+  List<String> tags = ["1", "2", "3", "4", "5", "6", "7", "8"];
   List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
 
   void _showMessage(BuildContext context, String text) {
@@ -80,108 +80,115 @@ class _UploadImagePageState extends State<UploadImagePage> {
         ),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Stack(
           children: [
             Padding(
-              padding: EdgeInsets.all(25),
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.8,
-                decoration: BoxDecoration(
-                  color: Color(0xffce93d8),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        _chooseGaleryImage();
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.5,
-                          color: Colors.grey[400],
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(Icons.add_a_photo,
-                                  color: Colors.grey[100], size: 50.0),
-                              Text(
-                                'Adicionar',
-                                style: TextStyle(color: Colors.grey[100]),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 1.1,
-                      margin: EdgeInsets.fromLTRB(18, 18, 18, 5),
-                      padding: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                        color: Color(0xffDEA1E9),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextFormField(
-                        controller: _controller,
-                        textInputAction: TextInputAction.done,
-                        onFieldSubmitted: (value) {
-                          if (tags.contains(value)) {
-                            _showMessage(context,
-                                'Essa tag já foi adicionada anteriormente');
-                          } else {
-                            tags.add(value);
-                          }
-                          _controller.clear();
+              padding: EdgeInsets.fromLTRB(25, 25, 25, 50),
+              child: Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: BoxDecoration(
+                    color: Color(0xffce93d8),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          _chooseGaleryImage();
                         },
-                        style: TextStyle(
-                          color: Color(0xffFFFFFF),
-                        ),
-                        decoration: InputDecoration(
-                          icon: Icon(Icons.add, color: Color(0xffFFFFFF)),
-                          hintText: 'adicionar filtro',
-                          hintStyle: TextStyle(
-                            color: Color(0xffF6F2F2),
-                          ),
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(8, 10, 8, 10),
-                      child: Wrap(
-                        children: tags.map((tag) {
-                          return Container(
-                            margin: EdgeInsets.only(left: 10),
-                            child: Chip(
-                              deleteIcon: Icon(
-                                Icons.cancel,
-                                color: Colors.white,
-                              ),
-                              onDeleted: () {
-                                setState(() {
-                                  tags.removeWhere((element) => element == tag);
-                                });
-                              },
-                              label: Text(
-                                tag,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Color(0xffEBBAF3),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.5,
+                            color: Colors.grey[400],
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.add_a_photo,
+                                    color: Colors.grey[100], size: 50.0),
+                                Text(
+                                  'Adicionar',
+                                  style: TextStyle(color: Colors.grey[100]),
+                                ),
+                              ],
                             ),
-                          );
-                        }).toList(),
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        width: MediaQuery.of(context).size.width * 1.1,
+                        margin: EdgeInsets.fromLTRB(18, 18, 18, 5),
+                        padding: EdgeInsets.only(left: 10),
+                        decoration: BoxDecoration(
+                          color: Color(0xffDEA1E9),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: TextFormField(
+                          controller: _controller,
+                          textInputAction: TextInputAction.done,
+                          onFieldSubmitted: (value) {
+                            if (tags.contains(value)) {
+                              _showMessage(context,
+                                  'Essa tag já foi adicionada anteriormente');
+                            } else {
+                              tags.add(value);
+                            }
+                            _controller.clear();
+                          },
+                          style: TextStyle(
+                            color: Color(0xffFFFFFF),
+                          ),
+                          decoration: InputDecoration(
+                            icon: Icon(Icons.add, color: Color(0xffFFFFFF)),
+                            hintText: 'adicionar filtro',
+                            hintStyle: TextStyle(
+                              color: Color(0xffF6F2F2),
+                            ),
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(16, 18, 18, 12),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Wrap(
+                            children: tags.map((tag) {
+                              return Container(
+                                margin: EdgeInsets.only(left: 10),
+                                child: Chip(
+                                  deleteIcon: Icon(
+                                    Icons.cancel,
+                                    color: Colors.white,
+                                  ),
+                                  onDeleted: () {
+                                    setState(() {
+                                      tags.removeWhere(
+                                          (element) => element == tag);
+                                    });
+                                  },
+                                  label: Text(
+                                    tag,
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: Color(0xffEBBAF3),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height / 1.27,
+              top: MediaQuery.of(context).size.height / 1.265,
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
