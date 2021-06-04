@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legendary_app/Home.dart';
+import 'Cadastrar.dart';
+import 'Entrar.dart';
 import 'RouteGenerator.dart';
 
 void main() {
