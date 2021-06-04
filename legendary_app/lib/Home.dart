@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'RouteGenerator.dart';
 
 class HomePageView extends StatefulWidget {

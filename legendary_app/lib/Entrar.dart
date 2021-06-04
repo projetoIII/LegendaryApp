@@ -42,7 +42,9 @@ class _EntrarPageViewState extends State<EntrarPageView> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+          },
           child:
           Icon(Icons.arrow_forward_ios_rounded),
           backgroundColor: Colors.purple

@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'RouteGenerator.dart';
+
 class UploadImagePage extends StatefulWidget {
   @override
   _UploadImagePageState createState() => _UploadImagePageState();
@@ -192,7 +194,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  _chooseGaleryImage();
+                  Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
                 },
                 child: ClipOval(
                   child: Container(
