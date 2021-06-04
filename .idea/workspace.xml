@@ -18,27 +18,32 @@
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-    </expand>
-    <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/develop" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-    </select>
+    </expand>
+    <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56c3913-ad7e-4c93-bd12-c19af854c372" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/assets/images/imgTeste.png" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/images/boat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/Cadastrar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Cadastrar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/Entrar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Entrar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@C:\Users\thays\.android\avd\Nexus_5X_API_30_8.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/Ste-ufrpe/.android/avd/Pixel_4a_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -47,6 +52,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="layout/telas_entrar_e_cadastrar" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1sp8JSDgEfOLMvsvZ3o1PG3MO1z" />
@@ -58,12 +68,16 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../src/flutter" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/legendary_app/images" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
@@ -119,30 +133,35 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1621562357561" />
-    <state x="92" y="92" width="1182" height="544" key="AVDManager" timestamp="1622586981727">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="121" y="153" width="1551" height="755" key="AVDManager" timestamp="1622846758985">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1622586981727" />
+    <state x="121" y="153" width="1551" height="755" key="AVDManager/0.25.1792.1010@0.25.1792.1010" timestamp="1622846758985" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1621563601063">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621563601063" />
-    <state width="1323" height="244" key="GridCell.Tab.0.bottom" timestamp="1621565912092">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom" timestamp="1622847300611">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621565912092" />
-    <state width="1323" height="244" key="GridCell.Tab.0.center" timestamp="1621565912091">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1622847300611" />
+    <state width="1750" height="272" key="GridCell.Tab.0.center" timestamp="1622847300610">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621565912091" />
-    <state width="1323" height="244" key="GridCell.Tab.0.left" timestamp="1621565912089">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1750" height="272" key="GridCell.Tab.0.center/0.25.1792.1010@0.25.1792.1010" timestamp="1622847300610" />
+    <state width="1750" height="272" key="GridCell.Tab.0.left" timestamp="1622847300610">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621565912089" />
-    <state width="1323" height="244" key="GridCell.Tab.0.right" timestamp="1621565912091">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1750" height="272" key="GridCell.Tab.0.left/0.25.1792.1010@0.25.1792.1010" timestamp="1622847300610" />
+    <state width="1750" height="272" key="GridCell.Tab.0.right" timestamp="1622847300611">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621565912091" />
+    <state width="1750" height="272" key="GridCell.Tab.0.right/0.25.1792.1010@0.25.1792.1010" timestamp="1622847300611" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1621563649327">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

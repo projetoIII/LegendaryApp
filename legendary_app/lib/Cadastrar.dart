@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
-
+import 'RouteGenerator.dart';
 
 class CadastrarPageView extends StatefulWidget {
 
@@ -103,7 +103,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
-                    print('voltar');
+                    Navigator.popAndPushNamed(context, RouteGenerator.ROTA_HOME);
                     setState(() {
                     });
                   },

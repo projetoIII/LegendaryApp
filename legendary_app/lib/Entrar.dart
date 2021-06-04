@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 
-
+import 'RouteGenerator.dart';
 
 class EntrarPageView extends StatefulWidget {
 
@@ -117,7 +117,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
-                    print('cadastro');
+                    Navigator.popAndPushNamed(context, RouteGenerator.ROTA_CADASTRO);
                     setState(() {
                     });
                   },
