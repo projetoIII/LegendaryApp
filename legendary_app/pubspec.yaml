@@ -30,10 +30,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  firebase_core: ^0.4.0+5
+  cloud_firestore: ^0.12.5
+  firebase_storage: ^3.0.1
+  firebase_auth: ^0.11.1+6
+  image_picker: ^0.7.5+3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,3 +82,10 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - images/
+
+fonts:
+  - family: RobotoMono
+    fonts:
+      - asset: fonts/RobotoMono-Regular.ttf
+      - asset: fonts/RobotoMono-Bold.ttf
+        weight: 700
