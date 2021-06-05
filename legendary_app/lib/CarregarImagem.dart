@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'RouteGenerator.dart';
@@ -32,25 +33,24 @@ class _UploadImagePageState extends State<UploadImagePage> {
     final _picker = ImagePicker();
 
     final pickedFile = await _picker.getImage(source: ImageSource.gallery);
-
-    setState(() {
-      if (pickedFile != null) {
+    if (pickedFile != null) {
+      setState(() {
         _image = File(pickedFile.path);
-      } else {
-        print('A imagem não foi selecionada');
-      }
-    });
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
           title: Text(
-            'Legendery',
+            'Legendary',
             style: TextStyle(
               fontFamily: 'RobotoMono',
               color: Color(0xffBA68C8),
@@ -92,7 +92,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   height: MediaQuery.of(context).size.height * 0.8,
                   decoration: BoxDecoration(
                     color: Color(0xffce93d8),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
                     children: [
@@ -101,7 +101,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                           _chooseGaleryImage();
                         },
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(30),
                           child: Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.5,
@@ -194,7 +194,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+                  Navigator.pushReplacementNamed(
+                      context, RouteGenerator.ROTA_LEGENDAS);
                 },
                 child: ClipOval(
                   child: Container(
