@@ -50,7 +50,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
         preferredSize: Size.fromHeight(60),
         child: AppBar(
           title: Text(
-            'Legendery',
+            'Legendary',
             style: TextStyle(
               fontFamily: 'RobotoMono',
               color: Color(0xffBA68C8),
