@@ -61,7 +61,7 @@ class _HomePageViewState extends State<HomePageView> {
                                     color: Colors.white,
                                   )),
                               onPressed: () {
-                                Navigator.popAndPushNamed(
+                                Navigator.pushNamed(
                                     context, RouteGenerator.ROTA_ENTRADA);
                               },
                               style: ElevatedButton.styleFrom(
@@ -81,7 +81,7 @@ class _HomePageViewState extends State<HomePageView> {
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.purple)),
                               onPressed: () {
-                                Navigator.popAndPushNamed(
+                                Navigator.pushNamed(
                                     context, RouteGenerator.ROTA_CADASTRO);
                               },
                               style: ElevatedButton.styleFrom(

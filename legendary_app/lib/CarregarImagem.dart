@@ -50,7 +50,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
         preferredSize: Size.fromHeight(60),
         child: AppBar(
           title: Text(
-            'Legendery',
+            'Legendary',
             style: TextStyle(
               fontFamily: 'RobotoMono',
               color: Color(0xffBA68C8),
@@ -194,7 +194,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS);
                 },
                 child: ClipOval(
                   child: Container(
@@ -205,7 +205,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF), size: 50.0),
+                            color: Color(0xffFFFFFF)),
                       ],
                     ),
                   ),
