@@ -194,7 +194,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS);
                 },
                 child: ClipOval(
                   child: Container(

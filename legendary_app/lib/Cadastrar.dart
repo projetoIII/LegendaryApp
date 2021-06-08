@@ -25,7 +25,9 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
       ),
 
       floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
+          },
           child:
           Icon(Icons.arrow_forward_ios_rounded),
           backgroundColor: Colors.purple
@@ -103,7 +105,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
-                    Navigator.popAndPushNamed(context, RouteGenerator.ROTA_HOME);
+                    Navigator.pushNamed(context, RouteGenerator.ROTA_HOME);
                     setState(() {
                     });
                   },
