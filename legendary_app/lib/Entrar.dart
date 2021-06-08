@@ -11,6 +11,7 @@ class EntrarPageView extends StatefulWidget {
 }
 
 class _EntrarPageViewState extends State<EntrarPageView> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +44,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+            Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
           },
           child:
           Icon(Icons.arrow_forward_ios_rounded),

@@ -205,7 +205,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF)),
+                            color: Color(0xffFFFFFF), size: 50.0),
                       ],
                     ),
                   ),
