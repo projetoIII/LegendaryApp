@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'Home.dart';
+import 'CarregarImagem.dart';
 import 'RouteGenerator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
-      home: HomePageView(),
-      theme: ThemeData( primaryColor: Colors.purple, appBarTheme: AppBarTheme(color: Color(0xFFCE93D8))),
+      home: UploadImagePage(),
+      theme: ThemeData(
+          primaryColor: Colors.purple,
+          appBarTheme: AppBarTheme(color: Color(0xFFCE93D8))),
       initialRoute: "/",
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false));
