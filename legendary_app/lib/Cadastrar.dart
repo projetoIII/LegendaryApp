@@ -65,7 +65,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                   child: Container(),
                 ),
                 TextFormField(
-                    autofocus: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
@@ -74,7 +73,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     )
                 ),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -84,7 +82,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     )
                 ),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
