@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Home.dart';
 import 'RouteGenerator.dart';
 
+//teste
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MaterialApp(
