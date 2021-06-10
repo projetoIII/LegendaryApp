@@ -13,14 +13,14 @@ class LegendasView extends StatefulWidget {
   _LegendasViewState createState() => _LegendasViewState();
 }
 
-Future<List<LegendaInterface>> fetchPhotos(http.Client client) async {
+Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
   final response = await client
       .get(Uri.parse('https://60bf73d997295a0017c42e86.mockapi.io/legenda'));
 
-  return compute(parsePhotos, response.body);
+  return compute(parseLegendas, response.body);
 }
 
-List<LegendaInterface> parsePhotos(String responseBody) {
+List<LegendaInterface> parseLegendas(String responseBody) {
   final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
 
   return parsed.map<LegendaInterface>((json) => LegendaInterface.fromJson(json)).toList();
@@ -28,10 +28,10 @@ List<LegendaInterface> parsePhotos(String responseBody) {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  List<String> _tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
   // String _legenda = "Let the sun illuminate the word that you could not find";
   // String _titulo = "Unwritten, Natasha Bedingfield";
   // bool _categoria = true;
+  List<String> _tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
   bool _favorito = false;
 
   @override
@@ -56,10 +56,9 @@ class _LegendasViewState extends State<LegendasView> {
                 tags: _tags,
               ),
               FutureBuilder<List<LegendaInterface>>(
-                future: fetchPhotos(http.Client()),
+                future: fetchLegendas(http.Client()),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) print(snapshot.error);
-
                   return snapshot.hasData
                       ? LegendaCard(
                           legendas: snapshot.data!,
