@@ -12,6 +12,10 @@ class UploadImagePage extends StatefulWidget {
 }
 
 class _UploadImagePageState extends State<UploadImagePage> {
+  late File imageFile;
+  final picker = ImagePicker();
+  bool isImagePicked = false;
+
   final TextEditingController _controller = new TextEditingController();
 
   List<String> tags = ["1", "2", "3", "4", "5", "6", "7", "8"];
@@ -28,16 +32,18 @@ class _UploadImagePageState extends State<UploadImagePage> {
     print("TESTE");
   }
 
-  void _chooseGaleryImage() async {
-    File _image;
-    final _picker = ImagePicker();
+  chooseImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
 
-    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _image = File(pickedFile.path);
-      });
-    }
+    setState(() {
+      if (pickedFile == null) {
+        print('Nenhuma imagem foi selecionada');
+      } else {
+        isImagePicked = true;
+        imageFile = File(pickedFile.path);
+        print('A imagem foi selecionada');
+      }
+    });
   }
 
   @override
@@ -46,40 +52,37 @@ class _UploadImagePageState extends State<UploadImagePage> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
       backgroundColor: Color(0xffFFFFFF),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          title: Text(
-            'Legendary',
-            style: TextStyle(
-              fontFamily: 'RobotoMono',
-              color: Color(0xffBA68C8),
-              fontSize: 35,
-            ),
+      appBar: AppBar(
+        title: Text(
+          'Legendary',
+          style: TextStyle(
+            fontFamily: 'RobotoMono',
+            color: Color(0xffBA68C8),
+            fontSize: 35,
           ),
-          backgroundColor: Color(0xffFFFFFF),
-          bottomOpacity: 0.0,
-          elevation: 0.0,
-          actions: <Widget>[
-            PopupMenuButton<String>(
-              padding: EdgeInsets.fromLTRB(10, 10, 27, 10),
-              icon: Icon(
-                Icons.menu,
-                color: Color(0xffBA68C8),
-                size: 40,
-              ),
-              onSelected: _actionsPopupMenu,
-              itemBuilder: (context) {
-                return itensMenu.map((String item) {
-                  return PopupMenuItem<String>(
-                    value: item,
-                    child: Text(item),
-                  );
-                }).toList();
-              },
-            )
-          ],
         ),
+        backgroundColor: Color(0xffFFFFFF),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            padding: EdgeInsets.fromLTRB(10, 10, 27, 10),
+            icon: Icon(
+              Icons.menu,
+              color: Color(0xffBA68C8),
+              size: 40,
+            ),
+            onSelected: _actionsPopupMenu,
+            itemBuilder: (context) {
+              return itensMenu.map((String item) {
+                return PopupMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -97,29 +100,46 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          _chooseGaleryImage();
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            color: Colors.grey[400],
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.add_a_photo,
-                                    color: Colors.grey[100], size: 50.0),
-                                Text(
-                                  'Adicionar',
-                                  style: TextStyle(color: Colors.grey[100]),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                          onTap: () {
+                            chooseImage(ImageSource.gallery);
+                          },
+                          child: isImagePicked != true
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    color: Colors.grey[400],
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(Icons.add_a_photo,
+                                            color: Colors.grey[100],
+                                            size: 50.0),
+                                        Text(
+                                          'Adicionar',
+                                          style: TextStyle(
+                                              color: Colors.grey[100]),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: FileImage(imageFile),
+                                      ),
+                                    ),
+                                  ))),
                       Container(
                         width: MediaQuery.of(context).size.width * 1.1,
                         margin: EdgeInsets.fromLTRB(18, 18, 18, 5),
@@ -206,7 +226,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF), size: 40.0),
+                            color: Color(0xffFFFFFF), size: 30.0),
                       ],
                     ),
                   ),
