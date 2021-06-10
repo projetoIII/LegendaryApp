@@ -9,6 +9,10 @@ import 'package:legendary_app/widgets/TagBusca.dart';
 import 'package:http/http.dart' as http;
 
 class LegendasView extends StatefulWidget {
+
+  // List<String> tags;
+  // LegendasView({Key? key, required this.tags}) : super(key: key);
+
   @override
   _LegendasViewState createState() => _LegendasViewState();
 }
@@ -28,10 +32,7 @@ List<LegendaInterface> parseLegendas(String responseBody) {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  // String _legenda = "Let the sun illuminate the word that you could not find";
-  // String _titulo = "Unwritten, Natasha Bedingfield";
-  // bool _categoria = true;
-  List<String> _tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
+  List<String> tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
   bool _favorito = false;
 
   @override
@@ -50,41 +51,33 @@ class _LegendasViewState extends State<LegendasView> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              TagBusca(
-                tags: _tags,
-              ),
-              FutureBuilder<List<LegendaInterface>>(
-                future: fetchLegendas(http.Client()),
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) print(snapshot.error);
-                  return snapshot.hasData
-                      ? LegendaCard(
-                          legendas: snapshot.data!,
-                          onFavorite: (bool val){
-                            setState((){
-                              val = !val;
-                              _favorito = val;
-                            });
-                          },
-                        )
-                      : Center(child: CircularProgressIndicator());
-                },
-              ),
-              // LegendaCard(
-              //   legenda: _legenda,
-              //   titulo: _titulo,
-              //   categoria: _categoria,
-              //   favorito: _favorito,
-              //   onFavorite: (bool val){
-              //     setState((){
-              //       val = !val;
-              //       _favorito = val;
-              //     });
-              //   },
-              // ),
-            ],
+          scrollDirection: Axis.vertical,
+          child: Expanded(
+            child: Column(
+              children: <Widget>[
+                TagBusca(
+                  tags: tags,
+                ),
+                FutureBuilder<List<LegendaInterface>>(
+                  future: fetchLegendas(http.Client()),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) print(snapshot.error);
+                    return snapshot.hasData
+                        ? LegendaCard(
+                      legendas: snapshot.data!,
+                      favorito: _favorito,
+                      onFavorite: (bool val){
+                        setState((){
+                          val = !val;
+                          _favorito = val;
+                        });
+                      },
+                    )
+                        : Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ],
+            ),
           ),
         )
       ),

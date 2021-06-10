@@ -3,29 +3,21 @@ import 'package:legendary_app/LegendaInterface.dart';
 
 class LegendaCard extends StatelessWidget {
 
-  // final String legenda;
-  // final String titulo;
-  // final bool categoria;
-  // final bool favorito;
-
-  // LegendaCard({
-  //     this.legenda = "",
-  //     this.titulo = "",
-  //     this.categoria = true,
-  //     this.favorito = false,
-  //     required this.onFavorite
-  // });
-
+  final bool favorito;
   final Function(bool) onFavorite;
   final List<LegendaInterface> legendas;
 
-  LegendaCard({Key? key, required this.legendas, required this.onFavorite}) : super(key: key);
+  LegendaCard({
+    Key? key,
+    required this.legendas,
+    this.favorito = false,
+    required this.onFavorite
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    return SingleChildScrollView(
-      child: ListView.builder(
+    return ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: legendas.length,
           itemBuilder: (context, index){
@@ -71,7 +63,8 @@ class LegendaCard extends StatelessWidget {
                               child: Padding(
                                   padding: EdgeInsets.all(20),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                           legendas[index].legenda,
@@ -90,12 +83,12 @@ class LegendaCard extends StatelessWidget {
                               )
                           ),
                           IconButton(
-                              icon: legendas[index].favorito
+                              icon: this.favorito
                                   ? Icon(Icons.favorite, size: 30)
                                   : Icon(Icons.favorite_border, size: 30),
                               color: Colors.white,
                               onPressed: () {
-                                onFavorite(legendas[index].favorito);
+                                onFavorite(this.favorito);
                               }),
                         ],
                       ),
@@ -105,7 +98,6 @@ class LegendaCard extends StatelessWidget {
               ),
             );
           }
-      ),
-    );
+      );
   }
 }

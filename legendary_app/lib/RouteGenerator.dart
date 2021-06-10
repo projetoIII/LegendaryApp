@@ -28,11 +28,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EntrarPageView());
       case ROTA_CADASTRO:
         return MaterialPageRoute(builder: (_) => CadastrarPageView());
-        return MaterialPageRoute(builder: (_) => HomePageView());
-
       case ROTA_CADASTRARIMAGEM:
         return MaterialPageRoute(builder: (_) => UploadImagePage());
-
       default:
         return MaterialPageRoute(builder: (_) => HomePageView());
     }
