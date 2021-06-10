@@ -29,7 +29,16 @@ class _UploadImagePageState extends State<UploadImagePage> {
   }
 
   void _actionsPopupMenu(String item) {
-    print("TESTE");
+    if (item == "Perfil") {
+      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+      print("Perfil");
+    } else if (item == "Favoritos") {
+      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+      print("Favoritos");
+    } else {
+      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+      print("Sair");
+    }
   }
 
   chooseImage(ImageSource source) async {
@@ -72,7 +81,9 @@ class _UploadImagePageState extends State<UploadImagePage> {
               color: Color(0xffBA68C8),
               size: 40,
             ),
-            onSelected: _actionsPopupMenu,
+            onSelected: (String item) {
+              _actionsPopupMenu(item);
+            },
             itemBuilder: (context) {
               return itensMenu.map((String item) {
                 return PopupMenuItem<String>(
@@ -80,6 +91,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   child: Text(item),
                 );
               }).toList();
+              String item;
             },
           )
         ],
@@ -226,7 +238,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF), size: 30.0),
+                            color: Color(0xffFFFFFF), size: 28.0),
                       ],
                     ),
                   ),
