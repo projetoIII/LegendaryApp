@@ -59,7 +59,7 @@ class LegendaCard extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
-                              height: 130,
+                              height: 160,
                               child: Padding(
                                   padding: EdgeInsets.all(20),
                                   child: Column(
@@ -67,13 +67,13 @@ class LegendaCard extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                          legendas[index].legenda,
+                                          legendas[index].trecho,
                                           style: TextStyle(
                                               color: Colors.black
                                           )),
                                       Padding(padding: EdgeInsets.only(top: 10)),
                                       Text(
-                                          legendas[index].titulo,
+                                          (legendas[index].artista + ", " + legendas[index].musica),
                                           style: TextStyle(
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold

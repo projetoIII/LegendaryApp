@@ -19,7 +19,7 @@ class LegendasView extends StatefulWidget {
 
 Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
   final response = await client
-      .get(Uri.parse('https://60bf73d997295a0017c42e86.mockapi.io/legenda'));
+      .get(Uri.parse('http://17c0a2600379.ngrok.io/legendas'));
 
   return compute(parseLegendas, response.body);
 }
@@ -52,8 +52,7 @@ class _LegendasViewState extends State<LegendasView> {
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: Expanded(
-            child: Column(
+          child: Column(
               children: <Widget>[
                 TagBusca(
                   tags: tags,
@@ -80,7 +79,6 @@ class _LegendasViewState extends State<LegendasView> {
             ),
           ),
         )
-      ),
     );
   }
 }
