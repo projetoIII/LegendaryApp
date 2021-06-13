@@ -57,20 +57,18 @@ class _UploadImagePageState extends State<UploadImagePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
-      backgroundColor: Color(0xffFFFFFF),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Legendary',
           style: TextStyle(
-            fontFamily: 'RobotoMono',
+            //fontFamily: 'RobotoMono',
             color: Color(0xffBA68C8),
-            fontSize: 35,
+            //fontSize: 35,
           ),
         ),
-        backgroundColor: Color(0xffFFFFFF),
+        backgroundColor: Colors.white,
         bottomOpacity: 0.0,
         elevation: 0.0,
         actions: <Widget>[
@@ -91,7 +89,6 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   child: Text(item),
                 );
               }).toList();
-              String item;
             },
           )
         ],
