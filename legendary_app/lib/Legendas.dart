@@ -19,7 +19,7 @@ class LegendasView extends StatefulWidget {
 
 Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
   final response = await client
-      .get(Uri.parse('http://17c0a2600379.ngrok.io/legendas'));
+      .get(Uri.parse('http://6e9903b8c5b4.ngrok.io/legendas?mus=superman'));
 
   return compute(parseLegendas, response.body);
 }
