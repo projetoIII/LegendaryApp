@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:legendary_app/util/TagLista.dart';
 
 import 'RouteGenerator.dart';
 
@@ -13,7 +14,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = ["1", "2"];
+  List<String> tags = TagLista().getList;
   List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
 
   void _showMessage(BuildContext context, String text) {

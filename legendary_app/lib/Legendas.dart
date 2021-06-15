@@ -4,22 +4,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:legendary_app/LegendaInterface.dart';
+import 'package:legendary_app/util/TagLista.dart';
 import 'package:legendary_app/widgets/LegendaCard.dart';
 import 'package:legendary_app/widgets/TagBusca.dart';
 import 'package:http/http.dart' as http;
 
 class LegendasView extends StatefulWidget {
 
-  // List<String> tags;
-  // LegendasView({Key? key, required this.tags}) : super(key: key);
-
   @override
   _LegendasViewState createState() => _LegendasViewState();
 }
 
 Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
+
+  List<String> parametersList = TagLista().getList;
+  String parameters = "?";
+
+  for(var pa in parametersList){
+    parameters+="mus=${pa}&";
+  }
+
+  String url = "http://90b6f9d2437c.ngrok.io";
+  String params = parameters.substring(0, parameters.length - 1);
+
   final response = await client
-      .get(Uri.parse('http://6e9903b8c5b4.ngrok.io/legendas?mus=superman'));
+      .get(Uri.parse('${url}/legendas${params}'));
 
   return compute(parseLegendas, response.body);
 }
@@ -32,7 +41,7 @@ List<LegendaInterface> parseLegendas(String responseBody) {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  List<String> tags = ['sol', 'cachorro', 'sun', 'flor', 'oculos'];
+  List<String> tags = TagLista().getList;
   bool _favorito = false;
 
   @override
