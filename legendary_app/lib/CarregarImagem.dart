@@ -57,6 +57,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -109,8 +111,47 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   child: Column(
                     children: [
                       GestureDetector(
-                          onTap: () {
-                            chooseImage(ImageSource.gallery);
+                          onTap: () async {
+                            return showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Escolha uma opção',
+                                      style: TextStyle(color: Colors.purple),
+                                    ),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: [
+                                          ListTile(
+                                            title: Text('Galeria'),
+                                            leading: Icon(
+                                              Icons.photo_rounded,
+                                              color: Colors.purple,
+                                            ),
+                                            onTap: () {
+                                              chooseImage(ImageSource.gallery);
+                                            },
+                                          ),
+                                          Divider(
+                                            height: 1,
+                                            color: Colors.purple,
+                                          ),
+                                          ListTile(
+                                            title: Text('Câmera'),
+                                            leading: Icon(
+                                              Icons.photo_camera_rounded,
+                                              color: Colors.purple,
+                                            ),
+                                            onTap: () {
+                                              chooseImage(ImageSource.camera);
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
                           },
                           child: isImagePicked != true
                               ? ClipRRect(
