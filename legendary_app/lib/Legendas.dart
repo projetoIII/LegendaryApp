@@ -17,14 +17,14 @@ class LegendasView extends StatefulWidget {
 
 Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
 
-  List<String> parametersList = TagLista().getList;
+  List<String> parametersList = TagLista().tagList;
   String parameters = "?";
 
   for(var pa in parametersList){
     parameters+="mus=${pa}&";
   }
 
-  String url = "http://90b6f9d2437c.ngrok.io";
+  String url = "http://46fecd5e8260.ngrok.io";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client
@@ -41,7 +41,7 @@ List<LegendaInterface> parseLegendas(String responseBody) {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  List<String> tags = TagLista().getList;
+  List<String> tags = TagLista().tagList;
   bool _favorito = false;
 
   @override

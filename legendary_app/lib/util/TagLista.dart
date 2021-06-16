@@ -4,10 +4,10 @@ class TagLista extends ChangeNotifier{
 
   List<String> _tagList = ['superman', 'sweetheart', 'teste1', 'teste2'];
 
-  List<String> get getList =>
+  List<String> get tagList =>
       this._tagList;
 
-  set tagList(String value) {
+  void add(String value) {
     _tagList.add(value);
     notifyListeners();
   }
