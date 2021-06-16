@@ -11,18 +11,20 @@ class EditarPerfilPageView extends StatefulWidget {
 }
 
 class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
+  late File imageFile;
+  final picker = ImagePicker();
+  bool isImagePicked = false;
 
-  void _chooseGaleryImage() async {
-    File _image;
-    final _picker = ImagePicker();
-
-    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
+  chooseImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
 
     setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
+      if (pickedFile == null) {
+        print('Nenhuma imagem foi selecionada');
       } else {
-        print('A imagem não foi selecionada');
+        isImagePicked = true;
+        imageFile = File(pickedFile.path);
+        print('A imagem foi selecionada');
       }
     });
   }
@@ -34,7 +36,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
             }),
         title: Text('Editar Perfil'),
       ),
@@ -59,12 +61,52 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           width: 150.0,
                           height: 150.0,
                           child: IconButton(
+                            color: Colors.white,
                             icon: Icon(
                               FontAwesomeIcons.camera,
                               size: 30.0,
                             ),
-                            onPressed: () {
-                                _chooseGaleryImage();
+                            onPressed: ()  async {
+                              return showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'Escolha uma opção',
+                                        style: TextStyle(color: Colors.purple),
+                                      ),
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: [
+                                            ListTile(
+                                              title: Text('Galeria'),
+                                              leading: Icon(
+                                                Icons.photo_rounded,
+                                                color: Colors.purple,
+                                              ),
+                                              onTap: () {
+                                                chooseImage(ImageSource.gallery);
+                                              },
+                                            ),
+                                            Divider(
+                                              height: 1,
+                                              color: Colors.purple,
+                                            ),
+                                            ListTile(
+                                              title: Text('Câmera'),
+                                              leading: Icon(
+                                                Icons.photo_camera_rounded,
+                                                color: Colors.purple,
+                                              ),
+                                              onTap: () {
+                                                chooseImage(ImageSource.camera);
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
                             },
                           ),
                         ),
