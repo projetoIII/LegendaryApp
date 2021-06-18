@@ -27,7 +27,7 @@ Future<List<LegendaInterface>> fetchLegendas(http.Client client, List<String> ta
     parameters+="mus=${pa}&";
   }
 
-  String url = "http://a402c18ef1c0.ngrok.io";
+  String url = "http://58bf57cf6533.ngrok.io";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client
@@ -75,14 +75,7 @@ class _LegendasViewState extends State<LegendasView> {
                     if (snapshot.hasError) print(snapshot.error);
                     return snapshot.hasData
                         ? LegendaCard(
-                      legendas: snapshot.data!,
-                      favorito: _favorito,
-                      onFavorite: (bool val){
-                        setState((){
-                          val = !val;
-                          _favorito = val;
-                        });
-                      },
+                      legendas: snapshot.data!
                     )
                         : Center(child: CircularProgressIndicator());
                   },
