@@ -10,20 +10,24 @@ import 'package:legendary_app/widgets/TagBusca.dart';
 import 'package:http/http.dart' as http;
 
 class LegendasView extends StatefulWidget {
+  final List<String> tags;
+  LegendasView(this.tags);
+
   @override
   _LegendasViewState createState() => _LegendasViewState();
 }
 
-Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
+Future<List<LegendaInterface>> fetchLegendas(http.Client client, List<String> tags) async {
 
-  List<String> parametersList = TagLista().tagList;
+  List<String> parametersList = tags;
+
   String parameters = "?";
 
   for(var pa in parametersList){
     parameters+="mus=${pa}&";
   }
 
-  String url = "http://f64adab9028d.ngrok.io";
+  String url = "http://a402c18ef1c0.ngrok.io";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client
@@ -40,7 +44,7 @@ List<LegendaInterface> parseLegendas(String responseBody) {
 
 class _LegendasViewState extends State<LegendasView> {
 
-  List<String> tags = TagLista().tagList;
+  // List<String> tags = TagLista().tagList;
   bool _favorito = false;
 
   @override
@@ -63,10 +67,10 @@ class _LegendasViewState extends State<LegendasView> {
           child: Column(
               children: <Widget>[
                 TagBusca(
-                  tags: tags,
+                  tags:widget.tags,
                 ),
                 FutureBuilder<List<LegendaInterface>>(
-                  future: fetchLegendas(http.Client()),
+                  future: fetchLegendas(http.Client(), widget.tags),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) print(snapshot.error);
                     return snapshot.hasData

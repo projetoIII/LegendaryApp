@@ -26,7 +26,8 @@ class RouteGenerator {
       case ROTA_HOME:
         return MaterialPageRoute(builder: (_) => HomePageView());
       case ROTA_LEGENDAS:
-        return MaterialPageRoute(builder: (_) => LegendasView());
+        final args = settings.arguments as TagLista;
+        return MaterialPageRoute(builder: (_) => LegendasView(args.tagList));
       case ROTA_ENTRADA:
         return MaterialPageRoute(builder: (_) => EntrarPageView());
       case ROTA_CADASTRO:

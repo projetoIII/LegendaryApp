@@ -14,7 +14,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = TagLista().tagList;
+  List<String> tags = ["superman", "sweetheart"];
   List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
 
   void _showMessage(BuildContext context, String text) {
@@ -195,7 +195,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS);
+                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS, arguments: TagLista(tags));
                 },
                 child: ClipOval(
                   child: Container(
