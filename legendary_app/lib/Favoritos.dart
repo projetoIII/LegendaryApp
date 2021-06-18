@@ -1,4 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:legendary_app/widgets/LegendaCard.dart';
+
+import 'FavoritosControl.dart';
 
 class FavoritesPage extends StatefulWidget {
   @override
@@ -6,6 +11,14 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
+  LegendaCardController _controller = LegendaCardController();
+
+  Future<Iterable<LegendaCard>> get items {
+    Future<Iterable<LegendaCard>> result;
+    result = _controller.getAll();
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
