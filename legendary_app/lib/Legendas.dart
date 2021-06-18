@@ -10,7 +10,6 @@ import 'package:legendary_app/widgets/TagBusca.dart';
 import 'package:http/http.dart' as http;
 
 class LegendasView extends StatefulWidget {
-
   @override
   _LegendasViewState createState() => _LegendasViewState();
 }
@@ -24,7 +23,7 @@ Future<List<LegendaInterface>> fetchLegendas(http.Client client) async {
     parameters+="mus=${pa}&";
   }
 
-  String url = "http://46fecd5e8260.ngrok.io";
+  String url = "http://f64adab9028d.ngrok.io";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client

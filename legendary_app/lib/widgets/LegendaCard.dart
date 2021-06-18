@@ -59,7 +59,7 @@ class LegendaCard extends StatelessWidget {
                         children: <Widget>[
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
-                              height: 160,
+                              height: 163,
                               child: Padding(
                                   padding: EdgeInsets.all(20),
                                   child: Column(

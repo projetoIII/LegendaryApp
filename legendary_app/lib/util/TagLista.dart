@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class TagLista extends ChangeNotifier{
 
-  List<String> _tagList = ['superman', 'sweetheart', 'teste1', 'teste2'];
+  List<String> _tagList = ['superman', 'sweetheart', 'teste1'];
 
   List<String> get tagList =>
       this._tagList;
