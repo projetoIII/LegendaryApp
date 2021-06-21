@@ -84,7 +84,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   child: Container(),
                 ),
                 TextFormField(
-                    autofocus: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
@@ -93,7 +92,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                     )
                 ),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
