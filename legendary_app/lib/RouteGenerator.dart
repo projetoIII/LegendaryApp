@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:legendary_app/CarregarImagem.dart';
 import 'package:legendary_app/Home.dart';
@@ -6,6 +7,7 @@ import 'package:legendary_app/Cadastrar.dart';
 import 'package:legendary_app/Entrar.dart';
 import 'package:legendary_app/EditarPerfil.dart';
 import 'package:legendary_app/util/TagLista.dart';
+import 'package:legendary_app/utils/authentication.dart';
 
 import 'Cadastrar.dart';
 import 'Entrar.dart';
@@ -28,12 +30,12 @@ class RouteGenerator {
         final args = settings.arguments as TagLista;
         return MaterialPageRoute(builder: (_) => LegendasView(args.tagList));
       case ROTA_ENTRADA:
-        return MaterialPageRoute(builder: (_) => EntrarPageView());
+        return MaterialPageRoute(
+            builder: (_) => EntrarPageView());
       case ROTA_CADASTRO:
         return MaterialPageRoute(builder: (_) => CadastrarPageView());
-        // return MaterialPageRoute(builder: (_) => HomePageView());
-      case ROTA_CADASTRARIMAGEM:
-        return MaterialPageRoute(builder: (_) => UploadImagePage());
+      // case ROTA_CADASTRARIMAGEM:
+      //   return MaterialPageRoute(builder: (_) => UploadImagePage());
       case ROTA_EDITARPERFIL:
         return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
       default:
