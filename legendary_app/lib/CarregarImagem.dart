@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:legendary_app/util/TagLista.dart';
 
 import 'RouteGenerator.dart';
 
@@ -13,7 +14,7 @@ class UploadImagePage extends StatefulWidget {
 class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  List<String> tags = ["superman", "sweetheart"];
   List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
 
   void _showMessage(BuildContext context, String text) {
@@ -194,7 +195,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS);
+                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS, arguments: TagLista(tags));
                 },
                 child: ClipOval(
                   child: Container(
@@ -205,7 +206,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF), size: 50.0),
+                            color: Color(0xffFFFFFF)),
                       ],
                     ),
                   ),
