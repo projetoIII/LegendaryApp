@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:legendary_app/utils/authentication.dart';
+import 'Entrar.dart';
 import 'RouteGenerator.dart';
 
 class HomePageView extends StatefulWidget {
@@ -7,11 +9,29 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Stack(
       children: <Widget>[
+        FutureBuilder(
+          future: Authentication.initializeFirebase(context: context),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error initializing Firebase');
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              return EntrarPageView();
+            }
+            return CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Colors.deepPurple,
+              ),
+            );
+          },
+        ),
         new Container(
           decoration: new BoxDecoration(
             image: new DecorationImage(
