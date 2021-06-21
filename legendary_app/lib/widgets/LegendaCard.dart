@@ -76,7 +76,7 @@ class _LegendaCardState extends State<LegendaCard> {
                                         )),
                                     Padding(padding: EdgeInsets.only(top: 10)),
                                     Text(
-                                        (widget.legendas[index].artista + ", " + widget.legendas[index].musica),
+                                        (widget.legendas[index].artista + ", " + widget.legendas[index].obra),
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold

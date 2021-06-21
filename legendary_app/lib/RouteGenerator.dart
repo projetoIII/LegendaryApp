@@ -16,11 +16,6 @@ class RouteGenerator {
   static const String ROTA_CADASTRO = "/cadastrar";
   static const String ROTA_CADASTRARIMAGEM = "/carregarimagem";
 
-  // List<String> tags = TagLista().tagList;
-
-  /// E quando for mudar de branch, seguir o modelo abaixo
-  // Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_HOME)
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case ROTA_HOME:

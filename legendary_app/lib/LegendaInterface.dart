@@ -2,14 +2,14 @@ class LegendaInterface {
 
   final String trecho;
   final String artista;
-  final String musica;
+  final String obra;
   final bool categoria;
   bool favorito;
 
   LegendaInterface({
     required this.trecho,
     required this.artista,
-    required this.musica,
+    required this.obra,
     required this.categoria,
     this.favorito = false,
   });
@@ -18,7 +18,7 @@ class LegendaInterface {
     return LegendaInterface(
       trecho: json['trecho'] as String,
       artista: json['artista'] as String,
-      musica: json['musica'] as String,
+      obra: json['obra'] as String,
       categoria: json['categoria'] as bool,
       favorito: json['favorito'] as bool,
     );
