@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/util/TagLista.dart';
 
@@ -12,6 +13,10 @@ class UploadImagePage extends StatefulWidget {
 }
 
 class _UploadImagePageState extends State<UploadImagePage> {
+  late File imageFile;
+  final picker = ImagePicker();
+  bool isImagePicked = false;
+
   final TextEditingController _controller = new TextEditingController();
 
   List<String> tags = ["superman", "sweetheart"];
@@ -25,62 +30,71 @@ class _UploadImagePageState extends State<UploadImagePage> {
   }
 
   void _actionsPopupMenu(String item) {
-    print("TESTE");
+    if (item == "Perfil") {
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
+
+    } else if (item == "Favoritos") {
+      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+      print("Favoritos");
+    } else {
+      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
+      print("Sair");
+    }
   }
 
-  void _chooseGaleryImage() async {
-    File _image;
-    final _picker = ImagePicker();
-
-    final pickedFile = await _picker.getImage(source: ImageSource.gallery);
+  chooseImage(ImageSource source) async {
+    final pickedFile = await picker.getImage(source: source);
 
     setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
+      if (pickedFile == null) {
+        print('Nenhuma imagem foi selecionada');
       } else {
-        print('A imagem não foi selecionada');
+        isImagePicked = true;
+        imageFile = File(pickedFile.path);
+        print('A imagem foi selecionada');
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
-      backgroundColor: Color(0xffFFFFFF),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          title: Text(
-            'Legendary',
-            style: TextStyle(
-              fontFamily: 'RobotoMono',
-              color: Color(0xffBA68C8),
-              fontSize: 35,
-            ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text(
+          'Legendary',
+          style: TextStyle(
+            //fontFamily: 'RobotoMono',
+            color: Color(0xffBA68C8),
+            //fontSize: 35,
           ),
-          backgroundColor: Color(0xffFFFFFF),
-          bottomOpacity: 0.0,
-          elevation: 0.0,
-          actions: <Widget>[
-            PopupMenuButton<String>(
-              padding: EdgeInsets.fromLTRB(10, 10, 27, 10),
-              icon: Icon(
-                Icons.menu,
-                color: Color(0xffBA68C8),
-                size: 40,
-              ),
-              onSelected: _actionsPopupMenu,
-              itemBuilder: (context) {
-                return itensMenu.map((String item) {
-                  return PopupMenuItem<String>(
-                    value: item,
-                    child: Text(item),
-                  );
-                }).toList();
-              },
-            )
-          ],
         ),
+        backgroundColor: Colors.white,
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            padding: EdgeInsets.fromLTRB(10, 10, 27, 10),
+            icon: Icon(
+              Icons.menu,
+              color: Color(0xffBA68C8),
+              size: 40,
+            ),
+            onSelected: (String item) {
+              _actionsPopupMenu(item);
+            },
+            itemBuilder: (context) {
+              return itensMenu.map((String item) {
+                return PopupMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -93,34 +107,90 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   height: MediaQuery.of(context).size.height * 0.8,
                   decoration: BoxDecoration(
                     color: Color(0xffce93d8),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          _chooseGaleryImage();
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            color: Colors.grey[400],
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(Icons.add_a_photo,
-                                    color: Colors.grey[100], size: 50.0),
-                                Text(
-                                  'Adicionar',
-                                  style: TextStyle(color: Colors.grey[100]),
-                                ),
-                              ],
+                          onTap: () async {
+                            return showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Escolha uma opção',
+                                      style: TextStyle(color: Colors.purple),
+                                    ),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: [
+                                          ListTile(
+                                            title: Text('Galeria'),
+                                            leading: Icon(
+                                              Icons.photo_rounded,
+                                              color: Colors.purple,
+                                            ),
+                                            onTap: () {
+                                              chooseImage(ImageSource.gallery);
+                                            },
+                                          ),
+                                          Divider(
+                                            height: 1,
+                                            color: Colors.purple,
+                                          ),
+                                          ListTile(
+                                            title: Text('Câmera'),
+                                            leading: Icon(
+                                              Icons.photo_camera_rounded,
+                                              color: Colors.purple,
+                                            ),
+                                            onTap: () {
+                                              chooseImage(ImageSource.camera);
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                });
+                          },
+                          child: isImagePicked != true
+                              ? ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height *
+                                  0.5,
+                              color: Colors.grey[400],
+                              child: Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(Icons.add_a_photo,
+                                      color: Colors.grey[100],
+                                      size: 50.0),
+                                  Text(
+                                    'Adicionar',
+                                    style: TextStyle(
+                                        color: Colors.grey[100]),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
+                          )
+                              : ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height *
+                                    0.5,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: FileImage(imageFile),
+                                  ),
+                                ),
+                              ))),
                       Container(
                         width: MediaQuery.of(context).size.width * 1.1,
                         margin: EdgeInsets.fromLTRB(18, 18, 18, 5),
@@ -171,7 +241,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                   onDeleted: () {
                                     setState(() {
                                       tags.removeWhere(
-                                          (element) => element == tag);
+                                              (element) => element == tag);
                                     });
                                   },
                                   label: Text(
