@@ -33,14 +33,18 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xffFFFFFF),
+        centerTitle: true,
+        elevation: 0,
         leading: IconButton(
-            icon: Icon(FontAwesomeIcons.arrowLeft),
+            icon: Icon(Icons.arrow_back_ios, color: Color(0xffBA68C8),),
             onPressed: () {
               Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
             }),
-        title: Text('Editar Perfil'),
+        title: Text('EDITAR PERFIL', style: TextStyle(color: Color(0xffBA68C8)),),
       ),
       body: Container(
+        color: Color(0xffFFFFFF),
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.all(50.0),

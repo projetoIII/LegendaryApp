@@ -96,7 +96,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               return itensMenu.map((String item) {
                 return PopupMenuItem<String>(
                   value: item,
-                  child: Text(item),
+                  child: Text(item, style: TextStyle(color: Color(0xffBA68C8)),),
                 );
               }).toList();
             },
