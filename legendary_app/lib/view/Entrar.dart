@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:legendary_app/utils/authentication.dart';
 
-import 'RouteGenerator.dart';
+import 'CarregarImagem.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
 class EntrarPageView extends StatefulWidget {
 
@@ -11,6 +14,9 @@ class EntrarPageView extends StatefulWidget {
 }
 
 class _EntrarPageViewState extends State<EntrarPageView> {
+
+  bool _isSigningIn = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +35,15 @@ class _EntrarPageViewState extends State<EntrarPageView> {
             padding: const EdgeInsets.all(30.0),
             child: Container(
               height: MediaQuery.of(context).size.height * 0.20,
-              width:  MediaQuery.of(context).size.height * 0.30,
+              width: MediaQuery.of(context).size.height * 0.30,
               color: Colors.transparent,
               child: Center(
                 child: Text(
                   'Bem-vindo(a) de volta!',
-                  style: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -43,30 +52,23 @@ class _EntrarPageViewState extends State<EntrarPageView> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+            Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
           },
-          child:
-          Icon(Icons.arrow_forward_ios_rounded),
-          backgroundColor: Colors.purple
-      ),
+          child: Icon(Icons.arrow_forward_ios_rounded),
+          backgroundColor: Colors.purple),
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height * 0.55,
         width: double.infinity,
         decoration: new BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(40),
-              topLeft: Radius.circular(40)
-          ),
+              topRight: Radius.circular(40), topLeft: Radius.circular(40)),
         ),
         child: Container(
           alignment: Alignment.bottomCenter,
           decoration: new BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40),
-                  topLeft: Radius.circular(40)
-              )
-          ),
+                  topRight: Radius.circular(40), topLeft: Radius.circular(40))),
           child: Padding(
             padding: const EdgeInsets.all(50.0),
             child: Column(
@@ -76,38 +78,60 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                 new Text(
                   "Entrar",
                   softWrap: true,
-                  style: new TextStyle(fontWeight: FontWeight.bold,
-                      fontSize: 25.0, color: Colors.black87),
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25.0,
+                      color: Colors.black87),
                 ),
                 new Expanded(
                   child: Container(),
                 ),
                 TextFormField(
-                    autofocus: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
-                        hintStyle: TextStyle( fontSize: 18.0,color: Colors.purple),
-                        labelStyle: TextStyle(color: Colors.purple)
-                    )
-                ),
+                        hintStyle:
+                            TextStyle(fontSize: 18.0, color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple))),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Senha',
-                        hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
-                        labelStyle: TextStyle(color: Colors.purple)
-                    )
-                ),
+                        hintStyle:
+                            TextStyle(fontSize: 18.0, color: Colors.purple),
+                        labelStyle: TextStyle(color: Colors.purple))),
                 new Expanded(
                   child: Container(),
                 ),
-                SignInButton(
-                  Buttons.Google,
-                  text: "Continuar com o Google",
-                  onPressed: () {},
+                Container(
+                  height: 50.0,
+                  child: SignInButton(
+                    Buttons.Google,
+                    text: "Continuar com o Google",
+                    onPressed: () async {
+                      setState(() {
+                        _isSigningIn = true;
+                      });
+                      User? user = await Authentication.signInWithGoogle(
+                          context: context);
+
+                      setState(() {
+                        _isSigningIn = false;
+                      });
+
+                      if (user != null) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            // builder: (context) => UploadImagePage(
+                            //   user: user,
+                            // ),
+                            builder: (context) => UploadImagePage(),
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
                 new Expanded(
                   child: Container(),
@@ -116,12 +140,15 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   child: new Text(
                     'Cadastre-se',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple),
                   ),
                   onTap: () {
-                    Navigator.popAndPushNamed(context, RouteGenerator.ROTA_CADASTRO);
-                    setState(() {
-                    });
+                    Navigator.popAndPushNamed(
+                        context, RouteGenerator.ROTA_CADASTRO);
+                    setState(() {});
                   },
                 ),
               ],
@@ -129,8 +156,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,);
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+    );
   }
 }
-
-

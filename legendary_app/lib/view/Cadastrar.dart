@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
-import 'RouteGenerator.dart';
 
 class CadastrarPageView extends StatefulWidget {
 
@@ -25,7 +25,9 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
       ),
 
       floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
+          onPressed: () {
+            Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
+          },
           child:
           Icon(Icons.arrow_forward_ios_rounded),
           backgroundColor: Colors.purple
@@ -65,7 +67,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                   child: Container(),
                 ),
                 TextFormField(
-                    autofocus: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         hintText: 'Nome de usuário',
@@ -74,7 +75,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     )
                 ),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -84,7 +84,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     )
                 ),
                 TextFormField(
-                    autofocus: true,
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -103,7 +102,7 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.purple),
                   ),
                   onTap: () {
-                    Navigator.popAndPushNamed(context, RouteGenerator.ROTA_HOME);
+                    Navigator.pushNamed(context, RouteGenerator.ROTA_HOME);
                     setState(() {
                     });
                   },

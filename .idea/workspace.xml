@@ -30,18 +30,23 @@
   <component name="ChangeListManager">
     <list default="true" id="a56c3913-ad7e-4c93-bd12-c19af854c372" name="Default Changelist" comment="Merge e ajuste das rotas das telas de home, login e cadastro">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_01_06_2021_19_33_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_01_06_2021_19_33__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/CarregarImagem.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/CarregarImagem.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/Entrar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Entrar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/lib/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/Home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/RouteGenerator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/RouteGenerator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/legendary_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/legendary_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/legendary_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/Ste-ufrpe/.android/avd/Pixel_4a_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/Ste-ufrpe/.android/avd/Nexus_5X_API_30.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -50,7 +55,7 @@
     </option>
   </component>
   <component name="Git.Pull.Settings">
-    <option name="BRANCH" value="develop" />
+    <option name="BRANCH" value="Entrega2" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -68,16 +73,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../src/flutter" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/legendary_app/lib" />
     <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/legendary_app/lib" />
       <recent name="$PROJECT_DIR$/legendary_app/images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/legendary_app/lib" />
+      <recent name="$PROJECT_DIR$/legendary_app/lib/widgets" />
+      <recent name="$PROJECT_DIR$/legendary_app/lib/utils" />
     </key>
   </component>
   <component name="RunManager">
@@ -142,46 +154,62 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="419" y="154" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1621559118998" />
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1621562357561">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="542" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1623614706294">
+      <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1621562357561" />
-    <state x="121" y="153" width="1551" height="755" key="AVDManager" timestamp="1622846758985">
+    <state x="542" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1623614706294" />
+    <state x="121" y="153" width="1551" height="755" key="AVDManager" timestamp="1623612000774">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1622586981727" />
-    <state x="121" y="153" width="1551" height="755" key="AVDManager/0.25.1792.1010@0.25.1792.1010" timestamp="1622846758985" />
+    <state x="121" y="153" width="1551" height="755" key="AVDManager/0.25.1792.1010@0.25.1792.1010" timestamp="1623612000774" />
+    <state x="181" y="112" key="DiffContextDialog" timestamp="1623628220261">
+      <screen x="0" y="25" width="1792" height="1010" />
+    </state>
+    <state x="181" y="112" key="DiffContextDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1623628220261" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1621563601063">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621563601063" />
-    <state width="1750" height="272" key="GridCell.Tab.0.bottom" timestamp="1622850984459">
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom" timestamp="1623629088143">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621565912092" />
-    <state width="1750" height="272" key="GridCell.Tab.0.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1622850984459" />
-    <state width="1750" height="272" key="GridCell.Tab.0.center" timestamp="1622850984458">
+    <state width="1750" height="272" key="GridCell.Tab.0.bottom/0.25.1792.1010@0.25.1792.1010" timestamp="1623629088143" />
+    <state width="1750" height="272" key="GridCell.Tab.0.center" timestamp="1623629088142">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621565912091" />
-    <state width="1750" height="272" key="GridCell.Tab.0.center/0.25.1792.1010@0.25.1792.1010" timestamp="1622850984458" />
-    <state width="1750" height="272" key="GridCell.Tab.0.left" timestamp="1622850984458">
+    <state width="1750" height="272" key="GridCell.Tab.0.center/0.25.1792.1010@0.25.1792.1010" timestamp="1623629088142" />
+    <state width="1750" height="272" key="GridCell.Tab.0.left" timestamp="1623629088142">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621565912089" />
-    <state width="1750" height="272" key="GridCell.Tab.0.left/0.25.1792.1010@0.25.1792.1010" timestamp="1622850984458" />
-    <state width="1750" height="272" key="GridCell.Tab.0.right" timestamp="1622850984459">
+    <state width="1750" height="272" key="GridCell.Tab.0.left/0.25.1792.1010@0.25.1792.1010" timestamp="1623629088142" />
+    <state width="1750" height="272" key="GridCell.Tab.0.right" timestamp="1623629088143">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
     <state width="1323" height="244" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621565912091" />
-    <state width="1750" height="272" key="GridCell.Tab.0.right/0.25.1792.1010@0.25.1792.1010" timestamp="1622850984459" />
-    <state x="711" y="236" key="RollbackChangesDialog" timestamp="1622850440414">
+    <state width="1750" height="272" key="GridCell.Tab.0.right/0.25.1792.1010@0.25.1792.1010" timestamp="1623629088143" />
+    <state x="711" y="236" key="RollbackChangesDialog" timestamp="1623628222138">
       <screen x="0" y="25" width="1792" height="1010" />
     </state>
-    <state x="711" y="236" key="RollbackChangesDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1622850440414" />
+    <state x="711" y="236" key="RollbackChangesDialog/0.25.1792.1010@0.25.1792.1010" timestamp="1623628222138" />
     <state x="184" y="9" key="SettingsEditor" timestamp="1621563649327">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621563649327" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
+          <url>file://$PROJECT_DIR$/legendary_app/lib/main.dart</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
