@@ -9,11 +9,11 @@ import 'package:legendary_app/util/TagLista.dart';
 import 'RouteGenerator.dart';
 
 class UploadImagePage extends StatefulWidget {
-  const UploadImagePage({Key? key, required User user})
-      : _user = user,
-        super(key: key);
-
-  final User _user;
+  // const UploadImagePage({Key? key, required User user})
+  //     : _user = user,
+  //       super(key: key);
+  //
+  // final User _user;
 
   @override
   _UploadImagePageState createState() => _UploadImagePageState();

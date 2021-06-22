@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:legendary_app/Home.dart';
 
-import 'Home.dart';
 import 'RouteGenerator.dart';
 
 void main() {
