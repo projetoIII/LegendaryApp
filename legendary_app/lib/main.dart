@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:legendary_app/Home.dart';
 
-import 'RouteGenerator.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:legendary_app/view/Home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

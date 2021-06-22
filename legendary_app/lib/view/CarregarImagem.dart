@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:legendary_app/util/TagLista.dart';
+import 'package:legendary_app/model/TagLista.dart';
 
-import 'RouteGenerator.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
 class UploadImagePage extends StatefulWidget {
   // const UploadImagePage({Key? key, required User user})
@@ -75,7 +75,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
           style: TextStyle(
             //fontFamily: 'RobotoMono',
             color: Color(0xffBA68C8),
-            //fontSize: 35,
+            fontSize: 35,
           ),
         ),
         backgroundColor: Colors.white,

@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:legendary_app/LegendaInterface.dart';
-import 'package:legendary_app/util/TagLista.dart';
-import 'package:legendary_app/widgets/LegendaCard.dart';
-import 'package:legendary_app/widgets/TagBusca.dart';
+import 'package:legendary_app/common/legendas/LegendaCard.dart';
+import 'package:legendary_app/common/legendas/TagBusca.dart';
 import 'package:http/http.dart' as http;
+import 'package:legendary_app/usercase/LegendaInterface.dart';
 
 class LegendasView extends StatefulWidget {
   final List<String> tags;
@@ -27,7 +26,7 @@ Future<List<LegendaInterface>> fetchLegendas(http.Client client, List<String> ta
     parameters+="mus=${pa}&";
   }
 
-  String url = "http://2fc45473fcb0.ngrok.io";
+  String url = "http://78d72bda9766.ngrok.io";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client

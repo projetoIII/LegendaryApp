@@ -5,7 +5,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:legendary_app/utils/authentication.dart';
 
 import 'CarregarImagem.dart';
-import 'RouteGenerator.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
 class EntrarPageView extends StatefulWidget {
 
@@ -123,9 +123,10 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                       if (user != null) {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => UploadImagePage(
-                              user: user,
-                            ),
+                            // builder: (context) => UploadImagePage(
+                            //   user: user,
+                            // ),
+                            builder: (context) => UploadImagePage(),
                           ),
                         );
                       }

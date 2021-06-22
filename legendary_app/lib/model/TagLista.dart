@@ -6,5 +6,4 @@ class TagLista {
       this._tagList;
 
   TagLista(this._tagList);
-
 }

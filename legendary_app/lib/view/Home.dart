@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legendary_app/utils/authentication.dart';
 import 'Entrar.dart';
-import 'RouteGenerator.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
 class HomePageView extends StatefulWidget {
   @override

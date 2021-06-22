@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:legendary_app/LegendaInterface.dart';
+import 'package:legendary_app/usercase/LegendaInterface.dart';
 
 
 class LegendaCard extends StatefulWidget {
@@ -60,30 +60,36 @@ class _LegendaCardState extends State<LegendaCard> {
                     color: Color(0xFFEBBAF3),
                     child: Row(
                       children: <Widget>[
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.5,
-                            height: 166,
-                            child: Padding(
-                                padding: EdgeInsets.all(20),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                        widget.legendas[index].trecho,
-                                        style: TextStyle(
-                                            color: Colors.black
-                                        )),
-                                    Padding(padding: EdgeInsets.only(top: 10)),
-                                    Text(
-                                        (widget.legendas[index].artista + ", " + widget.legendas[index].obra),
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold
-                                        )),
-                                  ],
-                                )
-                            )
+                        GestureDetector(
+                          onTap: (){
+                            print("box clicked");
+                            _dialogLegenda(context);
+                          },
+                          child: SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: 166,
+                              child: Padding(
+                                  padding: EdgeInsets.all(20),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                          widget.legendas[index].trecho,
+                                          style: TextStyle(
+                                              color: Colors.black
+                                          )),
+                                      Padding(padding: EdgeInsets.only(top: 10)),
+                                      Text(
+                                          (widget.legendas[index].artista + ", " + widget.legendas[index].obra),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold
+                                          )),
+                                    ],
+                                  )
+                              )
+                          ),
                         ),
                         IconButton(
                             icon: widget.legendas[index].favorito
