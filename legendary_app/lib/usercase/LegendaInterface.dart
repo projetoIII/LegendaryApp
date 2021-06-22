@@ -1,5 +1,6 @@
 class LegendaInterface {
 
+  final int id;
   final String trecho;
   final String artista;
   final String obra;
@@ -7,6 +8,7 @@ class LegendaInterface {
   bool favorito;
 
   LegendaInterface({
+    required this.id,
     required this.trecho,
     required this.artista,
     required this.obra,
@@ -16,6 +18,7 @@ class LegendaInterface {
 
   factory LegendaInterface.fromJson(Map<String, dynamic> json) {
     return LegendaInterface(
+      id: json['id'] as int,
       trecho: json['trecho'] as String,
       artista: json['artista'] as String,
       obra: json['obra'] as String,
