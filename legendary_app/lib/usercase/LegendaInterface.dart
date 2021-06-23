@@ -1,6 +1,6 @@
 class LegendaInterface {
 
-  final int id;
+  final String id;
   final String trecho;
   final String artista;
   final String obra;
@@ -18,7 +18,7 @@ class LegendaInterface {
 
   factory LegendaInterface.fromJson(Map<String, dynamic> json) {
     return LegendaInterface(
-      id: json['id'] as int,
+      id: json['id'] as String,
       trecho: json['trecho'] as String,
       artista: json['artista'] as String,
       obra: json['obra'] as String,
