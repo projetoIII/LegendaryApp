@@ -47,6 +47,9 @@ class LegendaCardController {
   Future delete(LegendaInterface legenda) {
     colab_id.indexOf(legenda.id);
     var id = firebase_id[colab_id.indexOf(legenda.id)];
+    int index = colab_id.indexOf(legenda.id);
+    colab_id.removeAt(index);
+    firebase_id.removeAt(index);
     return _favoritos!.doc(id).delete();
   }
 }
