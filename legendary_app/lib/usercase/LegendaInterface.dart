@@ -1,6 +1,5 @@
 class LegendaInterface {
-
-  final String id;
+  late String id;
   final String trecho;
   final String artista;
   final String obra;
@@ -15,6 +14,15 @@ class LegendaInterface {
     required this.categoria,
     this.favorito = false,
   });
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'trecho': trecho,
+        'artista': artista,
+        'obra': obra,
+        'categoria': categoria,
+        'favorito': favorito,
+      };
 
   factory LegendaInterface.fromJson(Map<String, dynamic> json) {
     return LegendaInterface(
