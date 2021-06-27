@@ -63,9 +63,11 @@ class _LegendaCardState extends State<LegendaCard> {
                             _dialogLegenda(context);
                           },
                           child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              height: 166,
-                              child: Padding(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            height: 166,
+                            child: Center(
+                              child: SingleChildScrollView(
+                                child: Padding(
                                   padding: EdgeInsets.all(20),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +78,7 @@ class _LegendaCardState extends State<LegendaCard> {
                                           style:
                                               TextStyle(color: Colors.black)),
                                       Padding(
-                                          padding: EdgeInsets.only(top: 10)),
+                                          padding: EdgeInsets.only(top: 15)),
                                       Text(
                                           (widget.legendas[index].artista +
                                               ", " +
@@ -85,7 +87,11 @@ class _LegendaCardState extends State<LegendaCard> {
                                               color: Colors.black,
                                               fontWeight: FontWeight.bold)),
                                     ],
-                                  ))),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                         IconButton(
                             icon: widget.legendas[index].favorito

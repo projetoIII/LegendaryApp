@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 
 class FavoritesPage extends StatefulWidget {
   @override
@@ -23,7 +24,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: Colors.purple),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Navigator.pushReplacementNamed(
+              context, RouteGenerator.ROTA_CADASTRARIMAGEM),
         ),
       ),
     );

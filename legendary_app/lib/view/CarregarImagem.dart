@@ -38,11 +38,9 @@ class _UploadImagePageState extends State<UploadImagePage> {
     if (item == "Perfil") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
     } else if (item == "Favoritos") {
-      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
-      print("Favoritos");
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_FAVORITOS);
     } else {
-      //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
-      print("Sair");
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_HOME);
     }
   }
 
