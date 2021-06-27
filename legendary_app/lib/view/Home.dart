@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:legendary_app/utils/authentication.dart';
-import 'Entrar.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:legendary_app/utils/authentication.dart';
+
+import 'Entrar.dart';
 
 class HomePageView extends StatefulWidget {
   @override
@@ -61,7 +62,7 @@ class _HomePageViewState extends State<HomePageView> {
                       children: <Widget>[
                         Container(
                           width: MediaQuery.of(context).size.width * 0.70,
-                          margin: EdgeInsets.all(50),
+                          margin: EdgeInsets.all(40),
                           height: 100.0,
                           child: Text(
                             "Legendary \nideias!",
@@ -72,7 +73,8 @@ class _HomePageViewState extends State<HomePageView> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.70,
-                          margin: EdgeInsets.all(10),
+                          margin:
+                              EdgeInsets.only(left: 10, right: 10, bottom: 10),
                           height: 50.0,
                           child: ElevatedButton(
                               child: Text("Entrar",
@@ -94,7 +96,7 @@ class _HomePageViewState extends State<HomePageView> {
                         ),
                         Container(
                             width: MediaQuery.of(context).size.width * 0.70,
-                            margin: EdgeInsets.only(top: 10.0, bottom: 60.0),
+                            margin: EdgeInsets.only(top: 10.0, bottom: 20),
                             height: 50.0,
                             child: ElevatedButton(
                               child: Text("Cadastrar",

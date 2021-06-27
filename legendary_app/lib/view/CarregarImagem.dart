@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
-
 import 'package:legendary_app/res/RouteGenerator.dart';
 
 class UploadImagePage extends StatefulWidget {
@@ -39,7 +37,6 @@ class _UploadImagePageState extends State<UploadImagePage> {
   void _actionsPopupMenu(String item) {
     if (item == "Perfil") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
-
     } else if (item == "Favoritos") {
       //Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_LEGENDAS);
       print("Favoritos");
@@ -96,7 +93,10 @@ class _UploadImagePageState extends State<UploadImagePage> {
               return itensMenu.map((String item) {
                 return PopupMenuItem<String>(
                   value: item,
-                  child: Text(item, style: TextStyle(color: Color(0xffBA68C8)),),
+                  child: Text(
+                    item,
+                    style: TextStyle(color: Color(0xffBA68C8)),
+                  ),
                 );
               }).toList();
             },
@@ -114,7 +114,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   height: MediaQuery.of(context).size.height * 0.8,
                   decoration: BoxDecoration(
                     color: Color(0xffce93d8),
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(40),
                   ),
                   child: Column(
                     children: [
@@ -139,6 +139,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                             ),
                                             onTap: () {
                                               chooseImage(ImageSource.gallery);
+                                              Navigator.of(context).pop();
                                             },
                                           ),
                                           Divider(
@@ -153,6 +154,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                             ),
                                             onTap: () {
                                               chooseImage(ImageSource.camera);
+                                              Navigator.of(context).pop();
                                             },
                                           )
                                         ],
@@ -163,41 +165,41 @@ class _UploadImagePageState extends State<UploadImagePage> {
                           },
                           child: isImagePicked != true
                               ? ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height *
-                                  0.5,
-                              color: Colors.grey[400],
-                              child: Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Icon(Icons.add_a_photo,
-                                      color: Colors.grey[100],
-                                      size: 50.0),
-                                  Text(
-                                    'Adicionar',
-                                    style: TextStyle(
-                                        color: Colors.grey[100]),
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    color: Colors.grey[400],
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Icon(Icons.add_a_photo,
+                                            color: Colors.grey[100],
+                                            size: 50.0),
+                                        Text(
+                                          'Adicionar',
+                                          style: TextStyle(
+                                              color: Colors.grey[100]),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          )
+                                )
                               : ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height *
-                                    0.5,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: FileImage(imageFile),
-                                  ),
-                                ),
-                              ))),
+                                  borderRadius: BorderRadius.circular(40),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.5,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: FileImage(imageFile),
+                                      ),
+                                    ),
+                                  ))),
                       Container(
                         width: MediaQuery.of(context).size.width * 1.1,
                         margin: EdgeInsets.fromLTRB(18, 18, 18, 5),
@@ -248,7 +250,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                   onDeleted: () {
                                     setState(() {
                                       tags.removeWhere(
-                                              (element) => element == tag);
+                                          (element) => element == tag);
                                     });
                                   },
                                   label: Text(
@@ -272,7 +274,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS, arguments: TagLista(tags));
+                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
+                      arguments: TagLista(tags));
                 },
                 child: ClipOval(
                   child: Container(
@@ -282,8 +285,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(Icons.arrow_forward_ios,
-                            color: Color(0xffFFFFFF)),
+                        Icon(Icons.arrow_forward_ios, color: Color(0xffFFFFFF)),
                       ],
                     ),
                   ),

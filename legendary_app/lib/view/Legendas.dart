@@ -26,7 +26,7 @@ Future<List<LegendaInterface>> fetchLegendas(
     parameters += "mus=${pa}&";
   }
 
-  String url = "http://4f311d3acbb0.ngrok.io/";
+  String url = "http://30ca07520bf9.ngrok.io/";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client.get(Uri.parse('${url}/legendas${params}'));
