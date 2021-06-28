@@ -74,12 +74,13 @@ class _LegendaCardState extends State<LegendaCard> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(widget.legendas[index].trecho,
+                                      SelectableText(
+                                          widget.legendas[index].trecho,
                                           style:
                                               TextStyle(color: Colors.black)),
                                       Padding(
                                           padding: EdgeInsets.only(top: 15)),
-                                      Text(
+                                      SelectableText(
                                           (widget.legendas[index].artista +
                                               ", " +
                                               widget.legendas[index].obra),
@@ -104,7 +105,8 @@ class _LegendaCardState extends State<LegendaCard> {
                                 widget.legendas[index].favorito = !fav;
                                 if (fav == true) {
                                   print('IF FALSE');
-                                  _delete(context, index);
+                                  bool tela_legenda = true;
+                                  _delete(context, index, tela_legenda);
                                 } else {
                                   print('IF TRUE');
                                   _save(context, index);
@@ -122,11 +124,13 @@ class _LegendaCardState extends State<LegendaCard> {
   }
 
   void _save(BuildContext context, int index) {
-    _controller.save(widget.legendas[index]);
+    _controller.save(
+      widget.legendas[index],
+    );
   }
 
-  void _delete(BuildContext context, int index) {
-    _controller.delete(widget.legendas[index]);
+  void _delete(BuildContext context, int index, bool tela_legenda) {
+    _controller.delete(widget.legendas[index], tela_legenda);
   }
 }
 

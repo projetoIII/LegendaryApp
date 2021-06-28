@@ -1,19 +1,31 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
 
 class LegendaCardController {
   List firebase_id = [];
   List colab_id = [];
   CollectionReference<Map<String, dynamic>>? _favoritos;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   LegendaCardController() {
     _initFavoritos();
   }
 
-  void _initFavoritos() {
+  void _initFavoritos() async {
+    User? _user = auth.currentUser;
+    //_favoritos = FirebaseFirestore.instance.collection('usuarios');
     _favoritos = FirebaseFirestore.instance.collection('favoritos');
+  }
+
+  getUser() {
+    User? user = auth.currentUser;
+    if (user != null) {
+      return user.uid;
+    }
+    return null;
   }
 
   LegendaInterface _createFavoritos(DocumentSnapshot<Map<String, dynamic>> e) {
@@ -44,12 +56,16 @@ class LegendaCardController {
     return favorito_add;
   }
 
-  Future delete(LegendaInterface legenda) {
-    colab_id.indexOf(legenda.id);
-    var id = firebase_id[colab_id.indexOf(legenda.id)];
-    int index = colab_id.indexOf(legenda.id);
-    colab_id.removeAt(index);
-    firebase_id.removeAt(index);
-    return _favoritos!.doc(id).delete();
+  Future delete(LegendaInterface legenda, bool tela_legendas) {
+    if (tela_legendas == true) {
+      colab_id.indexOf(legenda.id);
+      var id = firebase_id[colab_id.indexOf(legenda.id)];
+      int index = colab_id.indexOf(legenda.id);
+      colab_id.removeAt(index);
+      firebase_id.removeAt(index);
+      return _favoritos!.doc(id).delete();
+    }
+
+    return _favoritos!.doc(legenda.id).delete();
   }
 }
