@@ -28,7 +28,7 @@ Future<List<LegendaInterface>> fetchLegendas(
     parameters += "mus=${pa}&";
   }
 
-  String url = "http://0b749cd749fa.ngrok.io/";
+  String url = "http://b580fd237b8d.ngrok.io/";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client.get(Uri.parse('${url}/legendas${params}'));
@@ -45,9 +45,6 @@ List<LegendaInterface> parseLegendas(String responseBody) {
 }
 
 class _LegendasViewState extends State<LegendasView> {
-  // List<String> tags = TagLista().tagList;
-  bool _favorito = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

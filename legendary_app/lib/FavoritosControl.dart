@@ -16,8 +16,16 @@ class LegendaCardController {
 
   void _initFavoritos() async {
     User? _user = auth.currentUser;
-    //_favoritos = FirebaseFirestore.instance.collection('usuarios');
-    _favoritos = FirebaseFirestore.instance.collection('favoritos');
+    if (_user != null) {
+      print('AQUI');
+      final userId = _user.uid;
+      _favoritos = FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(userId)
+          .collection('favoritos');
+    } else {
+      _favoritos = FirebaseFirestore.instance.collection('favoritos');
+    }
   }
 
   getUser() {
@@ -46,9 +54,17 @@ class LegendaCardController {
   }
 
   Future save(LegendaInterface legenda) async {
+    User? _user = auth.currentUser;
     DocumentReference favorito_add = await FirebaseFirestore.instance
         .collection('favoritos')
         .add(legenda.toJson());
+    if (_user != null) {
+      favorito_add = await FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc()
+          .collection('favoritos')
+          .add(legenda.toJson());
+    }
     colab_id.add(legenda.id);
     firebase_id.add(favorito_add.id);
     print(colab_id);
