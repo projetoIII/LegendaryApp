@@ -18,18 +18,15 @@ Widget buildError(context) {
 
 Widget buildLoading(
     context, Color colorText, Color ProgressBG, Color ProgressC) {
-  return Directionality(
-    textDirection: TextDirection.ltr,
-    child: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(ProgressBG),
-            backgroundColor: ProgressC,
-          ),
-        ],
-      ),
+  return Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(ProgressBG),
+          backgroundColor: ProgressC,
+        ),
+      ],
     ),
   );
 }
