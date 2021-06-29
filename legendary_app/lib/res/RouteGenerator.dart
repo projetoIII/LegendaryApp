@@ -8,9 +8,7 @@ import 'package:legendary_app/view/Entrar.dart';
 import 'package:legendary_app/view/Home.dart';
 import 'package:legendary_app/view/Legendas.dart';
 
-
 class RouteGenerator {
-
   static const String ROTA_HOME = "/home";
   static const String ROTA_LEGENDAS = "/legendas";
   static const String ROTA_ENTRADA = "/entrar";
@@ -26,14 +24,14 @@ class RouteGenerator {
         final args = settings.arguments as TagLista;
         return MaterialPageRoute(builder: (_) => LegendasView(args.tagList));
       case ROTA_ENTRADA:
-        return MaterialPageRoute(
-            builder: (_) => EntrarPageView());
+        return MaterialPageRoute(builder: (_) => EntrarPageView());
       case ROTA_CADASTRO:
         return MaterialPageRoute(builder: (_) => CadastrarPageView());
       case ROTA_CADASTRARIMAGEM:
-        return MaterialPageRoute(builder: (_) => UploadImagePage());
+        //return MaterialPageRoute(builder: (_) => UploadImagePage(user: null));
       case ROTA_EDITARPERFIL:
-        return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
+        //final user = settings.arguments as User;
+        //return MaterialPageRoute(builder: (_) => EditarPerfilPageView(user: User);
       default:
         return MaterialPageRoute(builder: (_) => HomePageView());
     }

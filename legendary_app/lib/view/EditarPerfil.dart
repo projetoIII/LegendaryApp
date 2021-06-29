@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,12 +6,27 @@ import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
 import 'dart:io';
 
+import 'package:legendary_app/res/custom_colors.dart';
+import 'package:legendary_app/utils/authentication.dart';
+import 'package:legendary_app/utils/validator.dart';
+import 'package:legendary_app/widgets/custom_form_field.dart';
+
 class EditarPerfilPageView extends StatefulWidget {
+  const EditarPerfilPageView({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+
   @override
   _EditarPerfilPageViewState createState() => _EditarPerfilPageViewState();
 }
 
 class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
+  TextEditingController _displayNameController = TextEditingController();
+  final FocusNode _displayNameFocusNode = FocusNode();
+
+  late User _user;
   late File imageFile;
   final picker = ImagePicker();
   bool isImagePicked = false;
@@ -29,14 +45,22 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
     });
   }
 
+  void initState() {
+    _user = widget._user;
+    _displayNameController.text = _user.displayName!;
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(FontAwesomeIcons.arrowLeft),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+              Navigator.pushReplacementNamed(
+                  context, RouteGenerator.ROTA_CADASTRARIMAGEM);
             }),
         title: Text('Editar Perfil'),
       ),
@@ -60,55 +84,64 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         child: new SizedBox(
                           width: 150.0,
                           height: 150.0,
-                          child: IconButton(
-                            color: Colors.white,
-                            icon: Icon(
-                              FontAwesomeIcons.camera,
-                              size: 30.0,
-                            ),
-                            onPressed: ()  async {
-                              return showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        'Escolha uma opção',
-                                        style: TextStyle(color: Colors.purple),
-                                      ),
-                                      content: SingleChildScrollView(
-                                        child: ListBody(
-                                          children: [
-                                            ListTile(
-                                              title: Text('Galeria'),
-                                              leading: Icon(
-                                                Icons.photo_rounded,
-                                                color: Colors.purple,
-                                              ),
-                                              onTap: () {
-                                                chooseImage(ImageSource.gallery);
-                                              },
+                          child: _user.photoURL != null
+                              ? Image.network(
+                                  _user.photoURL!,
+                                  fit: BoxFit.fitHeight,
+                                )
+                              : IconButton(
+                                  color: Colors.white,
+                                  icon: Icon(
+                                    FontAwesomeIcons.camera,
+                                    size: 30.0,
+                                  ),
+                                  onPressed: () async {
+                                    return showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              'Escolha uma opção',
+                                              style: TextStyle(
+                                                  color: Colors.purple),
                                             ),
-                                            Divider(
-                                              height: 1,
-                                              color: Colors.purple,
-                                            ),
-                                            ListTile(
-                                              title: Text('Câmera'),
-                                              leading: Icon(
-                                                Icons.photo_camera_rounded,
-                                                color: Colors.purple,
+                                            content: SingleChildScrollView(
+                                              child: ListBody(
+                                                children: [
+                                                  ListTile(
+                                                    title: Text('Galeria'),
+                                                    leading: Icon(
+                                                      Icons.photo_rounded,
+                                                      color: Colors.purple,
+                                                    ),
+                                                    onTap: () {
+                                                      chooseImage(
+                                                          ImageSource.gallery);
+                                                    },
+                                                  ),
+                                                  Divider(
+                                                    height: 1,
+                                                    color: Colors.purple,
+                                                  ),
+                                                  ListTile(
+                                                    title: Text('Câmera'),
+                                                    leading: Icon(
+                                                      Icons
+                                                          .photo_camera_rounded,
+                                                      color: Colors.purple,
+                                                    ),
+                                                    onTap: () {
+                                                      chooseImage(
+                                                          ImageSource.camera);
+                                                    },
+                                                  )
+                                                ],
                                               ),
-                                              onTap: () {
-                                                chooseImage(ImageSource.camera);
-                                              },
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  });
-                            },
-                          ),
+                                            ),
+                                          );
+                                        });
+                                  },
+                                ),
                         ),
                       ),
                     ),
@@ -119,17 +152,64 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 height: 40.0,
               ),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Andrew Aquino',
+                  Text(_user.displayName!,
                       style: TextStyle(
                           color: Colors.purple,
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold)),
-                  Icon(
-                    FontAwesomeIcons.pen,
-                    color: Colors.grey,
-                  ),
+                  IconButton(
+                      icon: Icon(
+                        FontAwesomeIcons.pen,
+                        size: 15.0,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        Widget cancelaButton = FlatButton(
+                          child: Text("Cancelar"),
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                        );
+                        Widget salvarButton = FlatButton(
+                          child: Text("Salvar"),
+                          onPressed: () {
+                            setState(() async {
+                              _user.updateDisplayName(
+                                  _displayNameController.text);
+                              _user = (await Authentication.refreshUser(_user))!;
+                              Navigator.pop(context, false);
+                            });
+                          },
+                        );
+                        // configura o  AlertDialog
+                        AlertDialog alerta = AlertDialog(
+                          title: Text("Alterar Nome de Usuário"),
+                          content: CustomFormField(
+                            controller: _displayNameController,
+                            focusNode: _displayNameFocusNode,
+                            keyboardType: TextInputType.name,
+                            inputAction: TextInputAction.next,
+                            isCapitalized: true,
+                            validator: (value) => Validator.validateName(
+                              name: value,
+                            ),
+                            hint: '',
+                          ),
+                          actions: [
+                            cancelaButton,
+                            salvarButton,
+                          ],
+                        );
+                        // exibe o dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alerta;
+                          },
+                        );
+                      }),
                 ],
               ),
               SizedBox(
@@ -145,10 +225,9 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         children: <Widget>[
                           Align(
                             alignment: Alignment.centerLeft,
-                            child: Text('andrew.aquino@gmail.com',
+                            child: Text(_user.email!,
                                 style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 15.0)),
+                                    color: Colors.grey, fontSize: 15.0)),
                           ),
                         ],
                       ),
@@ -166,8 +245,10 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 "Alterar Senha",
                 softWrap: true,
                 textAlign: TextAlign.center,
-                style: new TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 25.0, color: Colors.black87),
+                style: new TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                    color: Colors.black87),
               ),
               SizedBox(
                 height: 20.0,
@@ -176,19 +257,17 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       hintText: 'Nome de usuário',
-                      hintStyle: TextStyle( fontSize: 18.0,color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple)
-                  )
-              ),
+                      hintStyle:
+                          TextStyle(fontSize: 18.0, color: Colors.purple),
+                      labelStyle: TextStyle(color: Colors.purple))),
               TextFormField(
                   obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       hintText: 'Senha',
-                      hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple)
-                  )
-              ),
+                      hintStyle:
+                          TextStyle(fontSize: 18.0, color: Colors.purple),
+                      labelStyle: TextStyle(color: Colors.purple))),
               new Expanded(
                 child: Container(),
               ),
@@ -205,9 +284,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           fontSize: 15,
                           color: Colors.white,
                         )),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
@@ -222,5 +299,4 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
       ),
     );
   }
-
 }
