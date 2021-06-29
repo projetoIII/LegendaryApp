@@ -16,8 +16,8 @@ class LegendaCardController {
 
   void _initFavoritos() async {
     User? _user = auth.currentUser;
+    print(_user);
     if (_user != null) {
-      print('AQUI');
       final userId = _user.uid;
       _favoritos = FirebaseFirestore.instance
           .collection('usuarios')
@@ -61,7 +61,7 @@ class LegendaCardController {
     if (_user != null) {
       favorito_add = await FirebaseFirestore.instance
           .collection('usuarios')
-          .doc()
+          .doc(_user.uid)
           .collection('favoritos')
           .add(legenda.toJson());
     }

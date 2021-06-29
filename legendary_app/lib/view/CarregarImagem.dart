@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -44,7 +45,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
     }
   }
 
-  chooseImage(ImageSource source) async {
+  Future chooseImage(BuildContext context, ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
 
     setState(() {
@@ -56,6 +57,15 @@ class _UploadImagePageState extends State<UploadImagePage> {
         print('A imagem foi selecionada');
       }
     });
+
+    String fileName = imageFile.path;
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('photos/$fileName');
+    UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    taskSnapshot.ref.getDownloadURL().then(
+          (value) => print("Done: $value"),
+        );
   }
 
   @override
@@ -136,7 +146,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                               color: Colors.purple,
                                             ),
                                             onTap: () {
-                                              chooseImage(ImageSource.gallery);
+                                              chooseImage(
+                                                  context, ImageSource.gallery);
                                               Navigator.of(context).pop();
                                             },
                                           ),
@@ -151,7 +162,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                               color: Colors.purple,
                                             ),
                                             onTap: () {
-                                              chooseImage(ImageSource.camera);
+                                              chooseImage(
+                                                  context, ImageSource.camera);
                                               Navigator.of(context).pop();
                                             },
                                           )

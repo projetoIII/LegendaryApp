@@ -1,9 +1,11 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
-import 'dart:io';
 
 class EditarPerfilPageView extends StatefulWidget {
   @override
@@ -27,21 +29,37 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
         print('A imagem foi selecionada');
       }
     });
+
+    String fileName = imageFile.path;
+    Reference firebaseStorageRef =
+        FirebaseStorage.instance.ref().child('profile/$fileName');
+    UploadTask uploadTask = firebaseStorageRef.putFile(imageFile);
+    TaskSnapshot taskSnapshot = await uploadTask;
+    taskSnapshot.ref.getDownloadURL().then(
+          (value) => print("Done: $value"),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffFFFFFF),
         centerTitle: true,
         elevation: 0,
         leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Color(0xffBA68C8),),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Color(0xffBA68C8),
+            ),
             onPressed: () {
-              Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+              Navigator.pushReplacementNamed(
+                  context, RouteGenerator.ROTA_CADASTRARIMAGEM);
             }),
-        title: Text('EDITAR PERFIL', style: TextStyle(color: Color(0xffBA68C8)),),
+        title: Text(
+          'EDITAR PERFIL',
+          style: TextStyle(color: Color(0xffBA68C8)),
+        ),
       ),
       body: Container(
         color: Color(0xffFFFFFF),
@@ -70,7 +88,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                               FontAwesomeIcons.camera,
                               size: 30.0,
                             ),
-                            onPressed: ()  async {
+                            onPressed: () async {
                               return showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
@@ -89,7 +107,9 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                                 color: Colors.purple,
                                               ),
                                               onTap: () {
-                                                chooseImage(ImageSource.gallery);
+                                                chooseImage(
+                                                    ImageSource.gallery);
+                                                Navigator.of(context).pop();
                                               },
                                             ),
                                             Divider(
@@ -104,6 +124,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                               ),
                                               onTap: () {
                                                 chooseImage(ImageSource.camera);
+                                                Navigator.of(context).pop();
                                               },
                                             )
                                           ],
@@ -123,7 +144,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 height: 40.0,
               ),
               Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text('Andrew Aquino',
                       style: TextStyle(
@@ -151,8 +172,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                             alignment: Alignment.centerLeft,
                             child: Text('andrew.aquino@gmail.com',
                                 style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 15.0)),
+                                    color: Colors.grey, fontSize: 15.0)),
                           ),
                         ],
                       ),
@@ -170,8 +190,10 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 "Alterar Senha",
                 softWrap: true,
                 textAlign: TextAlign.center,
-                style: new TextStyle(fontWeight: FontWeight.bold,
-                    fontSize: 25.0, color: Colors.black87),
+                style: new TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.0,
+                    color: Colors.black87),
               ),
               SizedBox(
                 height: 20.0,
@@ -180,19 +202,17 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       hintText: 'Nome de usuário',
-                      hintStyle: TextStyle( fontSize: 18.0,color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple)
-                  )
-              ),
+                      hintStyle:
+                          TextStyle(fontSize: 18.0, color: Colors.purple),
+                      labelStyle: TextStyle(color: Colors.purple))),
               TextFormField(
                   obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       hintText: 'Senha',
-                      hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple)
-                  )
-              ),
+                      hintStyle:
+                          TextStyle(fontSize: 18.0, color: Colors.purple),
+                      labelStyle: TextStyle(color: Colors.purple))),
               new Expanded(
                 child: Container(),
               ),
@@ -209,9 +229,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           fontSize: 15,
                           color: Colors.white,
                         )),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),
@@ -226,5 +244,4 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
       ),
     );
   }
-
 }
