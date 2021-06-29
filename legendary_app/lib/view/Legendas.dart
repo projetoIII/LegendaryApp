@@ -28,7 +28,7 @@ Future<List<LegendaInterface>> fetchLegendas(
     parameters += "mus=${pa}&";
   }
 
-  String url = "http://0fea924d9e08.ngrok.io/";
+  String url = "http://58f0d3591cb0.ngrok.io/";
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client.get(Uri.parse('${url}/legendas${params}'));
@@ -74,8 +74,10 @@ class _LegendasViewState extends State<LegendasView> {
                     return snapshot.hasData
                         ? LegendaCard(legendas: snapshot.data!)
                         : Container(
+                            height: MediaQuery.of(context).size.height * 0.6,
                             child: buildLoading(context, CustomColors.white,
-                                CustomColors.white, Colors.purple));
+                                CustomColors.white, Colors.purple),
+                          );
                   },
                 ),
               ],
