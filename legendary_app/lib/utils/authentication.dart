@@ -193,19 +193,6 @@ class Authentication {
     return user;
   }
 
-
-  static Future<User?> updateDisplayName({
-  required String name}) async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-
-    User? user;
-    await user!.updateProfile(displayName: user.displayName);
-    await user.reload();
-    User? refreshedUser = auth.currentUser;
-
-    return refreshedUser;
-  }
-
   static Future<User?> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
 
