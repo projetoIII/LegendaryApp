@@ -38,7 +38,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _actionsPopupMenu(String item) {
+  void _actionsPopupMenu(BuildContext context, String item) {
     if (item == "Perfil") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
     } else if (item == "Favoritos") {
@@ -98,7 +98,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               size: 40,
             ),
             onSelected: (String item) {
-              _actionsPopupMenu(item);
+              _actionsPopupMenu(context, item);
             },
             itemBuilder: (context) {
               return itensMenu.map((String item) {
@@ -319,7 +319,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
 
     var length = await imageFile.length();
 
-    var uri = Uri.parse('http://192.168.1.103:5000/image');
+    var uri = Uri.parse('http://8a5f41d0e19d.ngrok.io/image');
 
     var request = http.MultipartRequest("POST", uri);
     var multipartFile = http.MultipartFile('file', stream, length,
