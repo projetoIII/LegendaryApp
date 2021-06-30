@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
@@ -6,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
 
 class UploadImagePage extends StatefulWidget {
   // const UploadImagePage({Key? key, required User user})
@@ -284,6 +287,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
+                  uploadImageToServer(imageFile);
                   Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
                       arguments: TagLista(tags));
                 },
@@ -306,5 +310,29 @@ class _UploadImagePageState extends State<UploadImagePage> {
         ),
       ),
     );
+  }
+
+  uploadImageToServer(File imageFile) async {
+
+    var stream = http.ByteStream(imageFile.openRead());
+    stream.cast();
+
+    var length = await imageFile.length();
+
+    var uri = Uri.parse('http://192.168.1.103:5000/image');
+
+    var request = http.MultipartRequest("POST", uri);
+    var multipartFile = http.MultipartFile('file', stream, length,
+        filename: basename(imageFile.path));
+
+    request.files.add(multipartFile);
+    var response = await request.send();
+
+    setState(() {
+      response.stream.transform(utf8.decoder).listen((value) {
+        tags.add(value);
+      });
+    });
+
   }
 }
