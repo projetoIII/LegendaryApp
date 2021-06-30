@@ -47,6 +47,7 @@ class CustomFormField extends StatelessWidget {
         hintStyle: TextStyle(
             fontSize: 18.0, color: Colors.purple,
         ),
+        errorMaxLines: 7,
         errorStyle: TextStyle(
           color: Colors.redAccent,
           fontWeight: FontWeight.bold,
