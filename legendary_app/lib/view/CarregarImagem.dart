@@ -30,7 +30,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
   List<String> tags = ["superman", "sweetheart"];
-  List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
+  List<String> itensMenu = ["Perfil", "Favoritos", "URL", "Sair"];
 
   void _showMessage(BuildContext context, String text) {
     final snackBar = SnackBar(
@@ -44,6 +44,8 @@ class _UploadImagePageState extends State<UploadImagePage> {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
     } else if (item == "Favoritos") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_FAVORITOS);
+    } else if (item == "URL") {
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_URL);
     } else {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_HOME);
     }
@@ -330,15 +332,15 @@ class _UploadImagePageState extends State<UploadImagePage> {
     request.send().then((value) {
       value.stream.transform(utf8.decoder).listen((value) {
         setState(() {
-          if (!tags.contains(value)) {
-            tags.add(value);
+          String text = value.substring(1, value.length - 2);
+          if (!tags.contains(text)) {
+            tags.add(text);
           }
           Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
               arguments: TagLista(tags));
         });
       });
     });
-
 
   }
 }
