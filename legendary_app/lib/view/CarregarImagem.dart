@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
+import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
@@ -287,9 +288,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
               left: MediaQuery.of(context).size.width / 2.35,
               child: GestureDetector(
                 onTap: () {
-                  uploadImageToServer(imageFile);
-                  Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
-                      arguments: TagLista(tags));
+                  uploadImageToServer(context, imageFile);
                 },
                 child: ClipOval(
                   child: Container(
@@ -312,27 +311,34 @@ class _UploadImagePageState extends State<UploadImagePage> {
     );
   }
 
-  uploadImageToServer(File imageFile) async {
+  uploadImageToServer(BuildContext context, File imageFile) async {
 
-    var stream = http.ByteStream(imageFile.openRead());
-    stream.cast();
+    String url = URL.url + "/image";
 
-    var length = await imageFile.length();
+    var request = http.MultipartRequest("POST", Uri.parse(url));
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+        http.MultipartFile(
+            'file',
+            imageFile.readAsBytes().asStream(),
+            imageFile.lengthSync(),
+            filename: basename(imageFile.path))
+    );
 
-    var uri = Uri.parse('http://8a5f41d0e19d.ngrok.io/image');
+    request.headers.addAll(headers);
 
-    var request = http.MultipartRequest("POST", uri);
-    var multipartFile = http.MultipartFile('file', stream, length,
-        filename: basename(imageFile.path));
-
-    request.files.add(multipartFile);
-    var response = await request.send();
-
-    setState(() {
-      response.stream.transform(utf8.decoder).listen((value) {
-        tags.add(value);
+    request.send().then((value) {
+      value.stream.transform(utf8.decoder).listen((value) {
+        setState(() {
+          if (!tags.contains(value)) {
+            tags.add(value);
+          }
+          Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
+              arguments: TagLista(tags));
+        });
       });
     });
+
 
   }
 }
