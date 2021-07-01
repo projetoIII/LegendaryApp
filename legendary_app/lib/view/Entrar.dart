@@ -123,7 +123,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                       child: Container(),
                     ),
                     CustomFormField(
-                      scrollPadding: EdgeInsets.only(bottom:40),
                       controller: _emailController,
                       focusNode: _emailFocusNode,
                       keyboardType: TextInputType.emailAddress,
@@ -134,7 +133,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                       hint: 'Enter your email',
                     ),
                     CustomFormField(
-                      scrollPadding: EdgeInsets.only(bottom:40),
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
                       keyboardType: TextInputType.text,

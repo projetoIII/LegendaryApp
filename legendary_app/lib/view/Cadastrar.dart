@@ -105,7 +105,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                       child: Container(),
                     ),
                     CustomFormField(
-                      scrollPadding: EdgeInsets.only(bottom:40),
                       controller: _nameController,
                       focusNode: _nameFocusNode,
                       keyboardType: TextInputType.name,
@@ -118,7 +117,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     ),
                     SizedBox(height: 16.0),
                     CustomFormField(
-                      scrollPadding: EdgeInsets.only(bottom:40),
                       controller: _emailController,
                       focusNode: _emailFocusNode,
                       keyboardType: TextInputType.emailAddress,
@@ -130,7 +128,6 @@ class _CadastrarPageViewState extends State<CadastrarPageView> {
                     ),
                     SizedBox(height: 16.0),
                     CustomFormField(
-                      scrollPadding: EdgeInsets.only(bottom:40),
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
                       keyboardType: TextInputType.text,

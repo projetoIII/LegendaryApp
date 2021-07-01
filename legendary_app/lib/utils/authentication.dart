@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -190,6 +193,22 @@ class Authentication {
       print(e);
     }
 
+    return user;
+  }
+
+  static Future<User?> changePassword(String password) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+
+    user!.updatePassword(password).then((_) {
+      Authentication.customSnackBar(
+        content: 'Alteração da senha realizada com sucesso.',
+      );
+    }).catchError((error) {
+      Authentication.customSnackBar(
+        content: 'Alteração da senha não pode ser realizada' + error.toString(),
+      );
+    });
     return user;
   }
 

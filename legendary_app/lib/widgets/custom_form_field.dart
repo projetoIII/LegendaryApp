@@ -9,7 +9,6 @@ class CustomFormField extends StatelessWidget {
     required String hint,
     required FocusNode focusNode,
     required Function(String value) validator,
-    required EdgeInsets scrollPadding,
     this.isObscure = false,
     this.isCapitalized = false,
   })  : _emailController = controller,
@@ -37,7 +36,6 @@ class CustomFormField extends StatelessWidget {
       focusNode: _emailFocusNode,
       keyboardType: _keyboardtype,
       obscureText: isObscure,
-      scrollPadding: EdgeInsets.only(bottom:40),
       textCapitalization:
           isCapitalized ? TextCapitalization.words : TextCapitalization.none,
       textInputAction: _inputAction,
