@@ -2,19 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:legendary_app/utils/authentication.dart';
 
 import 'CarregarImagem.dart';
-import 'package:legendary_app/res/RouteGenerator.dart';
 
 class EntrarPageView extends StatefulWidget {
-
   @override
   _EntrarPageViewState createState() => _EntrarPageViewState();
 }
 
 class _EntrarPageViewState extends State<EntrarPageView> {
-
   bool _isSigningIn = false;
 
   @override
@@ -52,7 +50,10 @@ class _EntrarPageViewState extends State<EntrarPageView> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamedAndRemoveUntil(context, RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+                context,
+                RouteGenerator.ROTA_CADASTRARIMAGEM,
+                (Route<dynamic> route) => false);
           },
           child: Icon(Icons.arrow_forward_ios_rounded),
           backgroundColor: Colors.purple),
