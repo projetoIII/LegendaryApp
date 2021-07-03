@@ -5,14 +5,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
 import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
-import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-
-import 'EditarPerfil.dart';
 
 class UploadImagePage extends StatefulWidget {
   @override
@@ -277,6 +275,9 @@ class _UploadImagePageState extends State<UploadImagePage> {
                                 if (tags.contains(value)) {
                                   _showMessage(context,
                                       'Essa tag já foi adicionada anteriormente');
+                                } else if (value.length == 0) {
+                                  _showMessage(
+                                      context, 'Nenhuma palavra foi digitada');
                                 } else {
                                   tags.add(value);
                                 }
