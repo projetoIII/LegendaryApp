@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
 
-import '../../FavoritosControl.dart';
+import '../../controller/FavoritosControl.dart';
 
 class LegendaCard extends StatefulWidget {
   final List<LegendaInterface> legendas;
@@ -62,7 +62,7 @@ class _LegendaCardState extends State<LegendaCard> {
                         GestureDetector(
                           onTap: () {
                             print("box clicked");
-                            _dialogLegenda(context,widget.legendas[index]);
+                            _dialogLegenda(context, widget.legendas[index]);
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.5,
@@ -161,23 +161,23 @@ _dialogLegenda(BuildContext context, LegendaInterface legenda) {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Colors.grey,
-                            child: _user!.photoURL == null
-                                ? CircleAvatar(
-                              radius: 90,
-                              backgroundColor: Colors.grey.shade400,
-                              child: Icon(
-                                Icons.photo_camera_rounded,
-                                color: Colors.grey.shade600,
-                                size: 42.0,
-                              ),
-                            )
-                                : CircleAvatar(
-                              radius: 90,
-                              backgroundImage: NetworkImage(_user.photoURL!),
-                            )
-                          ),
+                              radius: 20,
+                              backgroundColor: Colors.grey,
+                              child: _user!.photoURL == null
+                                  ? CircleAvatar(
+                                      radius: 90,
+                                      backgroundColor: Colors.grey.shade400,
+                                      child: Icon(
+                                        Icons.photo_camera_rounded,
+                                        color: Colors.grey.shade600,
+                                        size: 42.0,
+                                      ),
+                                    )
+                                  : CircleAvatar(
+                                      radius: 90,
+                                      backgroundImage:
+                                          NetworkImage(_user.photoURL!),
+                                    )),
                           Text("  "),
                           Text(_user.displayName!,
                               style: TextStyle(
@@ -193,7 +193,7 @@ _dialogLegenda(BuildContext context, LegendaInterface legenda) {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Image.network(
-                             URL.photoUrl,
+                              URL.photoUrl,
                               fit: BoxFit.fill,
                               width: MediaQuery.of(context).size.width * 0.67,
                               height: MediaQuery.of(context).size.width * 0.67,
@@ -214,12 +214,12 @@ _dialogLegenda(BuildContext context, LegendaInterface legenda) {
                               width: MediaQuery.of(context).size.width * 0.65,
                               child: new Column(
                                 children: <Widget>[
-                                  new Text(
-                                      "“" + legenda.trecho + "” - ",
+                                  new Text("“" + legenda.trecho + "” - ",
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: 14.0, color: Colors.black)),
-                                  new Text(legenda.artista + ", " + legenda.obra,
+                                  new Text(
+                                      legenda.artista + ", " + legenda.obra,
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: 14.0,

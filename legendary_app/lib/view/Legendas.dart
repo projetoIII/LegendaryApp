@@ -9,7 +9,7 @@ import 'package:legendary_app/common/legendas/TagBusca.dart';
 import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/custom_colors.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
-import 'package:legendary_app/widgets.dart';
+import 'package:legendary_app/widgets/widgets.dart';
 
 class LegendasView extends StatefulWidget {
   final List<String> tags;

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:legendary_app/res/custom_colors.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
-import 'package:legendary_app/widgets.dart';
+import 'package:legendary_app/widgets/widgets.dart';
 
-import '../FavoritosControl.dart';
+import '../controller/FavoritosControl.dart';
 
 class FavoritesPage extends StatefulWidget {
   @override
