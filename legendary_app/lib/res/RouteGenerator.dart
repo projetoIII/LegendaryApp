@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:legendary_app/model/TagLista.dart';
 import 'package:legendary_app/view/Cadastrar.dart';
@@ -31,9 +32,9 @@ class RouteGenerator {
       case ROTA_CADASTRO:
         return MaterialPageRoute(builder: (_) => CadastrarPageView());
       case ROTA_CADASTRARIMAGEM:
-        return MaterialPageRoute(builder: (_) => UploadImagePage());
+        //return MaterialPageRoute(builder: (_) => UploadImagePage(user: null));
       case ROTA_EDITARPERFIL:
-        return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
+        //return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
       case ROTA_FAVORITOS:
         return MaterialPageRoute(builder: (_) => FavoritesPage());
       case ROTA_URL:

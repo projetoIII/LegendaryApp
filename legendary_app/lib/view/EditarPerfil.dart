@@ -1,18 +1,40 @@
 import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:legendary_app/utils/authentication.dart';
+import 'package:legendary_app/utils/validator.dart';
+import 'package:legendary_app/widgets/custom_form_field.dart';
 
 class EditarPerfilPageView extends StatefulWidget {
+  const EditarPerfilPageView({Key? key, required User user})
+      : _user = user,
+        super(key: key);
+
+  final User _user;
+
   @override
   _EditarPerfilPageViewState createState() => _EditarPerfilPageViewState();
 }
 
 class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
+  final FocusNode _displayNameFocusNode = FocusNode();
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  final TextEditingController _displayNameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final _editFormKey = GlobalKey<FormState>();
+
+  late User _user;
   late File imageFile;
   final picker = ImagePicker();
   bool isImagePicked = false;
@@ -27,7 +49,44 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
         isImagePicked = true;
         imageFile = File(pickedFile.path);
         print('A imagem foi selecionada');
+        _uploadImagem(imageFile);
       }
+    });
+  }
+
+  void updateUserInfo(String url) {
+    var user = FirebaseAuth.instance.currentUser;
+    _user
+        .updateProfile(displayName: _user.displayName, photoURL: url)
+        .then((value) {
+    }).catchError((e) {
+      print("There was an error updating profile");
+    });
+  }
+
+  Future _uploadImagem(File imageFile) async {
+    //Referenciar arquivo
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference pastaRaiz = storage.ref();
+    Reference arquivo = pastaRaiz.child("fotos").child("foto1.jpg");
+
+    //Fazer upload da imagem
+    UploadTask task = arquivo.putFile(imageFile);
+
+    //Controlar progresso do upload
+    task.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+      if (taskSnapshot.state == TaskState.success) {
+        _recuperarUrlImagem(taskSnapshot);
+      }
+    });
+  }
+
+ Future _recuperarUrlImagem(TaskSnapshot taskSnapshot) async {
+    String url = await taskSnapshot.ref.getDownloadURL();
+    print("resultado url: " + url);
+
+    setState(() {
+      updateUserInfo(url);
     });
 
     String fileName = imageFile.path;
@@ -38,6 +97,14 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
     taskSnapshot.ref.getDownloadURL().then(
           (value) => print("Done: $value"),
         );
+  }
+
+
+
+  void initState() {
+    _user = widget._user;
+    _displayNameController.text = _user.displayName!;
+    super.initState();
   }
 
   @override
@@ -75,68 +142,65 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 children: <Widget>[
                   Align(
                     alignment: Alignment.center,
-                    child: CircleAvatar(
-                      radius: 90,
-                      backgroundColor: Colors.grey,
-                      child: ClipOval(
-                        child: new SizedBox(
-                          width: 150.0,
-                          height: 150.0,
-                          child: IconButton(
-                            color: Colors.white,
-                            icon: Icon(
-                              FontAwesomeIcons.camera,
-                              size: 30.0,
-                            ),
-                            onPressed: () async {
-                              return showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        'Escolha uma opção',
-                                        style: TextStyle(color: Colors.purple),
-                                      ),
-                                      content: SingleChildScrollView(
-                                        child: ListBody(
-                                          children: [
-                                            ListTile(
-                                              title: Text('Galeria'),
-                                              leading: Icon(
-                                                Icons.photo_rounded,
-                                                color: Colors.purple,
-                                              ),
-                                              onTap: () {
-                                                chooseImage(
-                                                    ImageSource.gallery);
-                                                Navigator.of(context).pop();
-                                              },
-                                            ),
-                                            Divider(
-                                              height: 1,
-                                              color: Colors.purple,
-                                            ),
-                                            ListTile(
-                                              title: Text('Câmera'),
-                                              leading: Icon(
-                                                Icons.photo_camera_rounded,
-                                                color: Colors.purple,
-                                              ),
-                                              onTap: () {
-                                                chooseImage(ImageSource.camera);
-                                                Navigator.of(context).pop();
-                                              },
-                                            )
-                                          ],
+                    child: GestureDetector(
+                        onTap: () async {
+                          return showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    'Escolha uma opção',
+                                    style: TextStyle(color: Colors.purple),
+                                  ),
+                                  content: SingleChildScrollView(
+                                    child: ListBody(
+                                      children: [
+                                        ListTile(
+                                          title: Text('Galeria'),
+                                          leading: Icon(
+                                            Icons.photo_rounded,
+                                            color: Colors.purple,
+                                          ),
+                                          onTap: () {
+                                            chooseImage(ImageSource.gallery);
+                                            Navigator.of(context).pop();
+                                          },
                                         ),
-                                      ),
-                                    );
-                                  });
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
+                                        Divider(
+                                          height: 1,
+                                          color: Colors.purple,
+                                        ),
+                                        ListTile(
+                                          title: Text('Câmera'),
+                                          leading: Icon(
+                                            Icons.photo_camera_rounded,
+                                            color: Colors.purple,
+                                          ),
+                                          onTap: () {
+                                            chooseImage(ImageSource.camera);
+                                            Navigator.of(context).pop();
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
+                        child: _user.photoURL == null
+                            ? CircleAvatar(
+                                radius: 90,
+                                backgroundColor: Colors.grey.shade400,
+                                child: Icon(
+                                  Icons.photo_camera_rounded,
+                                  color: Colors.grey.shade600,
+                                  size: 42.0,
+                                ),
+                              )
+                            : CircleAvatar(
+                                radius: 90,
+                                backgroundImage: NetworkImage(_user.photoURL!),
+                              )),
                   ),
                 ],
               ),
@@ -146,15 +210,64 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Text('Andrew Aquino',
+                  Text(_displayNameController.text,
                       style: TextStyle(
                           color: Colors.purple,
                           fontSize: 25.0,
                           fontWeight: FontWeight.bold)),
-                  Icon(
-                    FontAwesomeIcons.pen,
-                    color: Colors.grey,
-                  ),
+                  IconButton(
+                      icon: Icon(
+                        FontAwesomeIcons.pen,
+                        size: 15.0,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        Widget cancelaButton = FlatButton(
+                          child: Text("Cancelar"),
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                        );
+                        Widget salvarButton = FlatButton(
+                          child: Text("Salvar"),
+                          onPressed: () {
+                            if (_editFormKey.currentState!.validate()) {
+                              setState(() async {
+                                _displayNameController.text;
+                                Navigator.pop(context, false);
+                              });
+                            }
+                          },
+                        );
+                        // configura o  AlertDialog
+                        AlertDialog alerta = AlertDialog(
+                          title: Text("Alterar Nome de Usuário"),
+                          content: Form(
+                              key: _editFormKey,
+                              child: CustomFormField(
+                                controller: _displayNameController,
+                                focusNode: _displayNameFocusNode,
+                                keyboardType: TextInputType.name,
+                                inputAction: TextInputAction.next,
+                                isCapitalized: true,
+                                validator: (value) => Validator.validateName(
+                                  name: value,
+                                ),
+                                hint: '',
+                              )),
+                          actions: [
+                            cancelaButton,
+                            salvarButton,
+                          ],
+                        );
+                        // exibe o dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alerta;
+                          },
+                        );
+                      }),
                 ],
               ),
               SizedBox(
@@ -170,7 +283,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         children: <Widget>[
                           Align(
                             alignment: Alignment.centerLeft,
-                            child: Text('andrew.aquino@gmail.com',
+                            child: Text(_user.email!,
                                 style: TextStyle(
                                     color: Colors.grey, fontSize: 15.0)),
                           ),
@@ -183,38 +296,79 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
               new Expanded(
                 child: Container(),
               ),
-              new Expanded(
-                child: Container(),
-              ),
-              new Text(
-                "Alterar Senha",
-                softWrap: true,
-                textAlign: TextAlign.center,
-                style: new TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25.0,
-                    color: Colors.black87),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextFormField(
+              FlatButton(
+                child: Text(
+                  "Alterar senha?",
+                  softWrap: true,
                   textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: 'Nome de usuário',
-                      hintStyle:
-                          TextStyle(fontSize: 18.0, color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple))),
-              TextFormField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: 'Senha',
-                      hintStyle:
-                          TextStyle(fontSize: 18.0, color: Colors.purple),
-                      labelStyle: TextStyle(color: Colors.purple))),
-              new Expanded(
-                child: Container(),
+                  style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                      color: Colors.black54),
+                ),
+                onPressed: () {
+                  Widget cancelaButton = FlatButton(
+                    child: Text("Cancelar"),
+                    onPressed: () {
+                      Navigator.pop(context, false);
+                    },
+                  );
+                  Widget salvarButton = FlatButton(
+                    child: Text("Salvar"),
+                    onPressed: () {
+                      setState(() async {
+                        if (_editFormKey.currentState!.validate()) {
+                          _passwordController.text;
+                          Navigator.pop(context, false);
+                        }
+                      });
+                    },
+                  );
+                  // configura o  AlertDialog
+                  AlertDialog alerta = AlertDialog(
+                    title: Text("Alterar Senha"),
+                    content: Form(
+                        key: _editFormKey,
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              CustomFormField(
+                                controller: _nameController,
+                                focusNode: _nameFocusNode,
+                                keyboardType: TextInputType.name,
+                                inputAction: TextInputAction.next,
+                                isCapitalized: true,
+                                validator: (value) => Validator.validateName(
+                                  name: value,
+                                ),
+                                hint: 'Nome de usuário',
+                              ),
+                              CustomFormField(
+                                controller: _passwordController,
+                                focusNode: _passwordFocusNode,
+                                keyboardType: TextInputType.text,
+                                inputAction: TextInputAction.done,
+                                validator: (value) =>
+                                    Validator.validatePassword(
+                                  password: value,
+                                ),
+                                isObscure: true,
+                                hint: 'Senha',
+                              ),
+                            ])),
+                    actions: [
+                      cancelaButton,
+                      salvarButton,
+                    ],
+                  );
+                  // exibe o dialog
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return alerta;
+                    },
+                  );
+                },
               ),
               new Expanded(
                 child: Container(),
@@ -229,7 +383,22 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           fontSize: 15,
                           color: Colors.white,
                         )),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() async {
+                        if (_displayNameController.text.isNotEmpty &&
+                            _displayNameController.text != _user.displayName) {
+                          _user.updateDisplayName(_displayNameController.text);
+                        }
+                        if (_passwordController.text.isNotEmpty) {
+                          _user = (await Authentication.changePassword(
+                              _passwordController.text))!;
+                        }
+
+                        _user = (await Authentication.refreshUser(_user))!;
+                        Navigator.pushNamed(
+                            context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40.0),

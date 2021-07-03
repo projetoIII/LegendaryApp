@@ -15,7 +15,6 @@ class LegendasView extends StatefulWidget {
   final List<String> tags;
   LegendasView(this.tags);
 
-
   @override
   _LegendasViewState createState() => _LegendasViewState();
 }
