@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,7 +40,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
   chooseImage(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
 
-
     setState(() {
       if (pickedFile == null) {
         print('Nenhuma imagem foi selecionada');
@@ -47,14 +47,52 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
         isImagePicked = true;
         imageFile = File(pickedFile.path);
         print('A imagem foi selecionada');
+        _uploadImagem(imageFile);
       }
     });
   }
 
+  void updateUserInfo(String url) {
+    var user = FirebaseAuth.instance.currentUser;
+    _user
+        .updateProfile(displayName: _user.displayName, photoURL: url)
+        .then((value) {
+    }).catchError((e) {
+      print("There was an error updating profile");
+    });
+  }
+
+  Future _uploadImagem(File imageFile) async {
+    //Referenciar arquivo
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference pastaRaiz = storage.ref();
+    Reference arquivo = pastaRaiz.child("fotos").child("foto1.jpg");
+
+    //Fazer upload da imagem
+    UploadTask task = arquivo.putFile(imageFile);
+
+    //Controlar progresso do upload
+    task.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+      if (taskSnapshot.state == TaskState.success) {
+        _recuperarUrlImagem(taskSnapshot);
+      }
+    });
+  }
+
+ Future _recuperarUrlImagem(TaskSnapshot taskSnapshot) async {
+    String url = await taskSnapshot.ref.getDownloadURL();
+    print("resultado url: " + url);
+
+    setState(() {
+      updateUserInfo(url);
+    });
+  }
+
+
+
   void initState() {
     _user = widget._user;
     _displayNameController.text = _user.displayName!;
-
     super.initState();
   }
 
@@ -128,20 +166,20 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                 );
                               });
                         },
-                        child: isImagePicked != true
+                        child: _user.photoURL == null
                             ? CircleAvatar(
-                          radius: 90,
-                          backgroundColor: Colors.grey.shade400,
-                          child: Icon(
-                            Icons.photo_camera_rounded,
-                            color: Colors.grey.shade600,
-                            size: 42.0,
-                          ),
-                        )
+                                radius: 90,
+                                backgroundColor: Colors.grey.shade400,
+                                child: Icon(
+                                  Icons.photo_camera_rounded,
+                                  color: Colors.grey.shade600,
+                                  size: 42.0,
+                                ),
+                              )
                             : CircleAvatar(
-                          radius: 90,
-                          backgroundImage: FileImage(imageFile),
-                        )),
+                                radius: 90,
+                                backgroundImage: NetworkImage(_user.photoURL!),
+                              )),
                   ),
                 ],
               ),
@@ -326,13 +364,14 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         )),
                     onPressed: () {
                       setState(() async {
-                        if(_displayNameController.text.isNotEmpty && _displayNameController.text != _user.displayName){
+                        if (_displayNameController.text.isNotEmpty &&
+                            _displayNameController.text != _user.displayName) {
                           _user.updateDisplayName(_displayNameController.text);
                         }
-                        if(_passwordController.text.isNotEmpty)
-                          {
-                            _user = (await Authentication.changePassword(_passwordController.text))!;
-                          }
+                        if (_passwordController.text.isNotEmpty) {
+                          _user = (await Authentication.changePassword(
+                              _passwordController.text))!;
+                        }
 
                         _user = (await Authentication.refreshUser(_user))!;
                         Navigator.pushNamed(
