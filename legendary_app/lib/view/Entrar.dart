@@ -128,14 +128,15 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                       validator: (value) => Validator.validateEmail(
                         email: value,
                       ),
-                      hint: 'Enter your email',
+                      hint: 'E-mail',
                     ),
                     CustomFormField(
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
                       keyboardType: TextInputType.text,
                       inputAction: TextInputAction.done,
-                      validator: (value) => null,
+                      validator: (value) =>
+                          Validator.validatePassword(password: value),
                       isObscure: true,
                       hint: 'Senha',
                     ),
