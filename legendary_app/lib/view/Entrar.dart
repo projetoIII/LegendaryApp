@@ -6,7 +6,6 @@ import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:legendary_app/utils/authentication.dart';
 import 'package:legendary_app/utils/validator.dart';
 import 'package:legendary_app/widgets/custom_form_field.dart';
-import 'CarregarImagem.dart';
 
 class EntrarPageView extends StatefulWidget {
   @override
@@ -62,7 +61,6 @@ class _EntrarPageViewState extends State<EntrarPageView> {
           ),
           floatingActionButton: FloatingActionButton(
               onPressed: () async {
-
                 _emailFocusNode.unfocus();
                 _passwordFocusNode.unfocus();
 
@@ -78,7 +76,10 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   );
 
                   if (user != null) {
-                    Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteGenerator.ROTA_CADASTRARIMAGEM,
+                        (Route<dynamic> route) => false);
                   }
                 }
 
@@ -161,7 +162,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                             Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 RouteGenerator.ROTA_CADASTRARIMAGEM,
-                                    (Route<dynamic> route) => false);
+                                (Route<dynamic> route) => false);
                           }
                         },
                       ),
