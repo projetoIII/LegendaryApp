@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
   List<String> tags = ["superman", "sweetheart"];
   List<String> itensMenu = ["Perfil", "Favoritos", "URL", "Sair"];
 
-  Future<bool> _exitApplication() async {
+  Future<bool> _exitApplication(BuildContext context) async {
     bool back = false;
     await showDialog(
       context: context,
@@ -82,7 +81,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
     } else if (item == "URL") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_URL);
     } else {
-      _exitApplication();
+      _exitApplication(context);
     }
   }
 
@@ -115,7 +114,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     return WillPopScope(
       onWillPop: () async {
-        return _exitApplication();
+        return _exitApplication(context);
       },
       child: Scaffold(
         backgroundColor: Colors.white,
