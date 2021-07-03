@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
 
@@ -60,7 +61,7 @@ class _LegendaCardState extends State<LegendaCard> {
                         GestureDetector(
                           onTap: () {
                             print("box clicked");
-                            _dialogLegenda(context);
+                            _dialogLegenda(context,widget.legendas[index]);
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.5,
@@ -134,7 +135,9 @@ class _LegendaCardState extends State<LegendaCard> {
   }
 }
 
-_dialogLegenda(BuildContext context) {
+_dialogLegenda(BuildContext context, LegendaInterface legenda) {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  User? _user = auth.currentUser;
   showDialog(
       context: context,
       builder: (_) => new AlertDialog(
@@ -159,19 +162,23 @@ _dialogLegenda(BuildContext context) {
                           CircleAvatar(
                             radius: 20,
                             backgroundColor: Colors.grey,
-                            child: ClipOval(
-                              child: new SizedBox(
-                                width: 170.0,
-                                height: 170.0,
-                                child: Image.network(
-                                  "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                                  fit: BoxFit.fill,
-                                ),
+                            child: _user!.photoURL == null
+                                ? CircleAvatar(
+                              radius: 90,
+                              backgroundColor: Colors.grey.shade400,
+                              child: Icon(
+                                Icons.photo_camera_rounded,
+                                color: Colors.grey.shade600,
+                                size: 42.0,
                               ),
-                            ),
+                            )
+                                : CircleAvatar(
+                              radius: 90,
+                              backgroundImage: NetworkImage(_user.photoURL!),
+                            )
                           ),
                           Text("  "),
-                          Text('Andrew Aquino',
+                          Text(_user.displayName!,
                               style: TextStyle(
                                   color: Colors.black, fontSize: 20.0)),
                         ],
@@ -207,11 +214,11 @@ _dialogLegenda(BuildContext context) {
                               child: new Column(
                                 children: <Widget>[
                                   new Text(
-                                      "“Let the sun illuminate the word that you could not find” - ",
+                                      "“" + legenda.trecho + "” - ",
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: 14.0, color: Colors.black)),
-                                  new Text("Unwritten, Natasha Bedingfield",
+                                  new Text(legenda.artista + ", " + legenda.obra,
                                       textAlign: TextAlign.right,
                                       style: TextStyle(
                                           fontSize: 14.0,

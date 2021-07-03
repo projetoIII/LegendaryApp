@@ -55,7 +55,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
   }
 
   void updateUserInfo(String url) {
-    var user = FirebaseAuth.instance.currentUser;
     _user
         .updateProfile(displayName: _user.displayName, photoURL: url)
         .then((value) {
