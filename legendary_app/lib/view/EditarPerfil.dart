@@ -96,6 +96,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor: Color(0xffFFFFFF),
           centerTitle: true,
@@ -282,7 +283,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 new Expanded(
                   child: Container(),
                 ),
-                FlatButton(
+                TextButton(
                   child: Text(
                     "Alterar senha?",
                     softWrap: true,
@@ -293,13 +294,13 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         color: Colors.black54),
                   ),
                   onPressed: () {
-                    Widget cancelaButton = FlatButton(
+                    Widget cancelaButton = TextButton(
                       child: Text("Cancelar"),
                       onPressed: () {
                         Navigator.pop(context, false);
                       },
                     );
-                    Widget salvarButton = FlatButton(
+                    Widget salvarButton = TextButton(
                       child: Text("Salvar"),
                       onPressed: () {
                         setState(() async {
@@ -360,6 +361,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                   child: Container(),
                 ),
                 Container(
+
                   width: MediaQuery.of(context).size.width * 0.70,
                   margin: EdgeInsets.all(10),
                   height: 50.0,
@@ -391,7 +393,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(40.0),
                             side: BorderSide(color: Colors.purple)),
-                        padding: EdgeInsets.all(10.0),
                         primary: Colors.purple,
                       )),
                 ),
