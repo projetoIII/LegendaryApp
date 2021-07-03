@@ -8,52 +8,54 @@ class InputURL extends StatefulWidget {
 }
 
 class _InputURLState extends State<InputURL> {
-
   String valor = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xffFFFFFF),
-        centerTitle: true,
-        elevation: 0,
-        leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xffBA68C8),
-            ),
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                  context, RouteGenerator.ROTA_CADASTRARIMAGEM);
-            }),
-        title: Text(
-          'URL',
-          style: TextStyle(color: Color(0xffBA68C8)),
+        appBar: AppBar(
+          backgroundColor: Color(0xffFFFFFF),
+          centerTitle: true,
+          elevation: 0,
+          leading: IconButton(
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xffBA68C8),
+              ),
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                    context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+              }),
+          title: Text(
+            'URL',
+            style: TextStyle(color: Color(0xffBA68C8)),
+          ),
         ),
-      ),
-      body: Container(
-          color: Color(0xffFFFFFF),
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-              padding: const EdgeInsets.all(50.0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              color: Color(0xffFFFFFF),
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
                       TextFormField(
                         textAlign: TextAlign.center,
-                        onFieldSubmitted: (String value){
+                        onFieldSubmitted: (String value) {
                           setState(() {
                             URL.url = value;
                           });
                         },
                         decoration: InputDecoration(
                             hintText: "URL aqui",
-                            hintStyle: TextStyle(fontSize: 18.0, color: Colors.purple),
-                            labelStyle: TextStyle(color: Colors.purple)),),
-            ]
-          ),
-      ),
-    ));
+                            hintStyle:
+                                TextStyle(fontSize: 18.0, color: Colors.purple),
+                            labelStyle: TextStyle(color: Colors.purple)),
+                      ),
+                    ]),
+              ),
+            )));
   }
 }

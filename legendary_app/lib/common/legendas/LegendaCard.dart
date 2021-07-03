@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
 
 import '../../FavoritosControl.dart';
@@ -192,7 +193,7 @@ _dialogLegenda(BuildContext context, LegendaInterface legenda) {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Image.network(
-                              "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                             URL.photoUrl,
                               fit: BoxFit.fill,
                               width: MediaQuery.of(context).size.width * 0.67,
                               height: MediaQuery.of(context).size.width * 0.67,

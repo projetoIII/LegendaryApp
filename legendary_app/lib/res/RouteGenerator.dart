@@ -32,9 +32,9 @@ class RouteGenerator {
       case ROTA_CADASTRO:
         return MaterialPageRoute(builder: (_) => CadastrarPageView());
       case ROTA_CADASTRARIMAGEM:
-        //return MaterialPageRoute(builder: (_) => UploadImagePage(user: null));
+        return MaterialPageRoute(builder: (_) => UploadImagePage());
       case ROTA_EDITARPERFIL:
-        //return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
+        return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
       case ROTA_FAVORITOS:
         return MaterialPageRoute(builder: (_) => FavoritesPage());
       case ROTA_URL:

@@ -6,13 +6,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:legendary_app/res/custom_colors.dart';
 import 'package:legendary_app/view/CarregarImagem.dart';
 
 class Authentication {
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
-      backgroundColor: CustomColors.secondaryButton,
+      backgroundColor: CustomColors.white,
       content: Text(
         content,
         style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
@@ -28,11 +29,7 @@ class Authentication {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => UploadImagePage(user: user),
-        ),
-      );
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
     }
 
     return firebaseApp;

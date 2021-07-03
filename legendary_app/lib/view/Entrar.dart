@@ -78,10 +78,7 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                   );
 
                   if (user != null) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => UploadImagePage(
-                              user: auth.currentUser,
-                            )));
+                    Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
                   }
                 }
 
@@ -161,12 +158,10 @@ class _EntrarPageViewState extends State<EntrarPageView> {
                           });
 
                           if (user != null) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    UploadImagePage(user: user),
-                              ),
-                            );
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                RouteGenerator.ROTA_CADASTRARIMAGEM,
+                                    (Route<dynamic> route) => false);
                           }
                         },
                       ),
