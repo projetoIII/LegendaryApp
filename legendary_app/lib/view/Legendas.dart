@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:legendary_app/common/legendas/LegendaCard.dart';
 import 'package:legendary_app/common/legendas/TagBusca.dart';
+import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/custom_colors.dart';
 import 'package:legendary_app/usercase/LegendaInterface.dart';
 import 'package:legendary_app/widgets.dart';
@@ -13,6 +14,7 @@ import 'package:legendary_app/widgets.dart';
 class LegendasView extends StatefulWidget {
   final List<String> tags;
   LegendasView(this.tags);
+
 
   @override
   _LegendasViewState createState() => _LegendasViewState();
@@ -28,7 +30,7 @@ Future<List<LegendaInterface>> fetchLegendas(
     parameters += "mus=${pa}&";
   }
 
-  String url = "http://58f0d3591cb0.ngrok.io/";
+  String url = URL.url;
   String params = parameters.substring(0, parameters.length - 1);
 
   final response = await client.get(Uri.parse('${url}/legendas${params}'));

@@ -1,11 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
+import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
 
 class UploadImagePage extends StatefulWidget {
   // const UploadImagePage({Key? key, required User user})
@@ -26,7 +31,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
   final TextEditingController _controller = new TextEditingController();
 
   List<String> tags = ["superman", "sweetheart"];
-  List<String> itensMenu = ["Perfil", "Favoritos", "Sair"];
+  List<String> itensMenu = ["Perfil", "Favoritos", "URL", "Sair"];
 
   Future<bool> _exitApplication() async {
     bool back = false;
@@ -69,11 +74,13 @@ class _UploadImagePageState extends State<UploadImagePage> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  void _actionsPopupMenu(String item) {
+  void _actionsPopupMenu(BuildContext context, String item) {
     if (item == "Perfil") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_EDITARPERFIL);
     } else if (item == "Favoritos") {
       Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_FAVORITOS);
+    } else if (item == "URL") {
+      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_URL);
     } else {
       _exitApplication();
     }
@@ -133,7 +140,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                 size: 40,
               ),
               onSelected: (String item) {
-                _actionsPopupMenu(item);
+                _actionsPopupMenu(context,item);
               },
               itemBuilder: (context) {
                 return itensMenu.map((String item) {
@@ -348,5 +355,36 @@ class _UploadImagePageState extends State<UploadImagePage> {
         ),
       ),
     );
+  }
+
+  uploadImageToServer(BuildContext context, File imageFile) async {
+
+    String url = URL.url + "/image";
+
+    var request = http.MultipartRequest("POST", Uri.parse(url));
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+        http.MultipartFile(
+            'file',
+            imageFile.readAsBytes().asStream(),
+            imageFile.lengthSync(),
+            filename: basename(imageFile.path))
+    );
+
+    request.headers.addAll(headers);
+
+    request.send().then((value) {
+      value.stream.transform(utf8.decoder).listen((value) {
+        setState(() {
+          String text = value.substring(1, value.length - 2);
+          if (!tags.contains(text)) {
+            tags.add(text);
+          }
+          Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
+              arguments: TagLista(tags));
+        });
+      });
+    });
+
   }
 }

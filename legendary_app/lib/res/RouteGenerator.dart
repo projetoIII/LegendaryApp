@@ -6,6 +6,7 @@ import 'package:legendary_app/view/EditarPerfil.dart';
 import 'package:legendary_app/view/Entrar.dart';
 import 'package:legendary_app/view/Favoritos.dart';
 import 'package:legendary_app/view/Home.dart';
+import 'package:legendary_app/view/InputURL.dart';
 import 'package:legendary_app/view/Legendas.dart';
 
 class RouteGenerator {
@@ -16,6 +17,7 @@ class RouteGenerator {
   static const String ROTA_CADASTRARIMAGEM = "/carregarimagem";
   static const String ROTA_EDITARPERFIL = "/editarperfil";
   static const String ROTA_FAVORITOS = "/favoritos";
+  static const String ROTA_URL = "/url";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -34,6 +36,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EditarPerfilPageView());
       case ROTA_FAVORITOS:
         return MaterialPageRoute(builder: (_) => FavoritesPage());
+      case ROTA_URL:
+        return MaterialPageRoute(builder: (_) => InputURL());
       default:
         return MaterialPageRoute(builder: (_) => HomePageView());
     }
