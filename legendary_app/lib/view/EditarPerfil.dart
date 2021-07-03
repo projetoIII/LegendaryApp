@@ -134,41 +134,42 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
-                                    title: Text(
-                                      'Escolha uma opção',
-                                      style: TextStyle(color: Colors.purple),
-                                    ),
-                                    content: ListBody(
-                                      children: [
-                                        ListTile(
-                                          title: Text('Galeria'),
-                                          leading: Icon(
-                                            Icons.photo_rounded,
-                                            color: Colors.purple,
-                                          ),
-                                          onTap: () {
-                                            chooseImage(ImageSource.gallery);
-                                            Navigator.of(context).pop();
-                                          },
+                                      title: Text(
+                                        'Escolha uma opção',
+                                        style: TextStyle(color: Colors.purple),
+                                      ),
+                                      content: SingleChildScrollView(
+                                        child: ListBody(
+                                          children: [
+                                            ListTile(
+                                              title: Text('Galeria'),
+                                              leading: Icon(
+                                                Icons.photo_rounded,
+                                                color: Colors.purple,
+                                              ),
+                                              onTap: () {
+                                                chooseImage(ImageSource.gallery);
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            Divider(
+                                              height: 1,
+                                              color: Colors.purple,
+                                            ),
+                                            ListTile(
+                                              title: Text('Câmera'),
+                                              leading: Icon(
+                                                Icons.photo_camera_rounded,
+                                                color: Colors.purple,
+                                              ),
+                                              onTap: () {
+                                                chooseImage(ImageSource.camera);
+                                                Navigator.of(context).pop();
+                                              },
+                                            )
+                                          ],
                                         ),
-                                        Divider(
-                                          height: 1,
-                                          color: Colors.purple,
-                                        ),
-                                        ListTile(
-                                          title: Text('Câmera'),
-                                          leading: Icon(
-                                            Icons.photo_camera_rounded,
-                                            color: Colors.purple,
-                                          ),
-                                          onTap: () {
-                                            chooseImage(ImageSource.camera);
-                                            Navigator.of(context).pop();
-                                          },
-                                        )
-                                      ],
-                                    ),
-                                  );
+                                      ));
                                 });
                           },
                           child: _user.photoURL == null
