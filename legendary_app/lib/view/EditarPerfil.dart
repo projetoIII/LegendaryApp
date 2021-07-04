@@ -30,7 +30,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
   late User _user;
   late File imageFile;
   final picker = ImagePicker();
-  bool isImagePicked = false;
+  String phoLoading = "";
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -41,7 +41,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
       if (pickedFile == null) {
         print('Nenhuma imagem foi selecionada');
       } else {
-        isImagePicked = true;
         imageFile = File(pickedFile.path);
         print('A imagem foi selecionada');
         _uploadImagem(imageFile);
@@ -52,44 +51,36 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
 
   Future updateUserInfo(String url) async {
     setState(() {
-      _user
-          .updateProfile(displayName: _user.displayName, photoURL: url)
-          .then((value) {})
-          .catchError((e) {
-        print("There was an error updating profile");
-      });
+      _user.updatePhotoURL(url);
     });
   }
 
   Future _uploadImagem(File imageFile) async {
-    //Referenciar arquivo
-    FirebaseStorage storage = FirebaseStorage.instance;
-    Reference pastaRaiz = storage.ref();
-    Reference arquivo = pastaRaiz.child("fotos").child("foto1.jpg");
+    Reference storage =
+        FirebaseStorage.instance.ref().child("fotos").child("perfil.jpg");
 
-    //Fazer upload da imagem
-    UploadTask task = arquivo.putFile(imageFile);
+    UploadTask task = storage.putFile(imageFile);
 
-    //Controlar progresso do upload
-    task.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+    task.snapshotEvents.listen((TaskSnapshot taskSnapshot) async {
       if (taskSnapshot.state == TaskState.success) {
-        _recuperarUrlImagem(taskSnapshot);
+        String url = await taskSnapshot.ref.getDownloadURL();
+        setState(() {
+          updateUserInfo(url);
+          phoLoading = "";
+        });
+
+      } else if (taskSnapshot.state == TaskState.running) {
+        setState(() {
+          phoLoading = "Carregando...";
+        });
       }
-    });
-  }
-
-  Future _recuperarUrlImagem(TaskSnapshot taskSnapshot) async {
-    String url = await taskSnapshot.ref.getDownloadURL();
-    print("resultado url: " + url);
-
-    setState(() {
-      updateUserInfo(url);
     });
   }
 
   void initState() {
     _user = auth.currentUser!;
     _displayNameController.text = _user.displayName!;
+
     super.initState();
   }
 
@@ -174,8 +165,14 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                       ));
                                 });
                           },
-                          child: _user.photoURL == null
+                          child: _user.photoURL != null
                               ? CircleAvatar(
+                                  radius: 90,
+                                  backgroundImage:
+                                      NetworkImage(_user.photoURL!),
+                                  child: Text(phoLoading),
+                                )
+                              : CircleAvatar(
                                   radius: 90,
                                   backgroundColor: Colors.grey.shade400,
                                   child: Icon(
@@ -183,11 +180,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                     color: Colors.grey.shade600,
                                     size: 42.0,
                                   ),
-                                )
-                              : CircleAvatar(
-                                  radius: 90,
-                                  backgroundImage:
-                                      NetworkImage(_user.photoURL!),
                                 )),
                     ),
                   ],
@@ -210,13 +202,13 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           color: Colors.grey,
                         ),
                         onPressed: () {
-                          Widget cancelaButton = FlatButton(
+                          Widget cancelaButton = TextButton(
                             child: Text("Cancelar"),
                             onPressed: () {
                               Navigator.pop(context, false);
                             },
                           );
-                          Widget salvarButton = FlatButton(
+                          Widget salvarButton = TextButton(
                             child: Text("Salvar"),
                             onPressed: () {
                               if (_editFormKey.currentState!.validate()) {

@@ -18,13 +18,12 @@ class UploadImagePage extends StatefulWidget {
 }
 
 class _UploadImagePageState extends State<UploadImagePage> {
+
   late File _imageFile;
   final auth = FirebaseAuth.instance;
-  late File imageFile;
   final picker = ImagePicker();
   bool isImagePicked = false;
   bool _isSigningOut = false;
-  late String photoUrl;
 
   final TextEditingController _controller = new TextEditingController();
 
@@ -340,8 +339,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   left: MediaQuery.of(context).size.width / 2.35,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RouteGenerator.ROTA_LEGENDAS,
-                          arguments: TagLista(tags));
+                      uploadImageToServer(context, _imageFile);
                     },
                     child: ClipOval(
                       child: Container(
