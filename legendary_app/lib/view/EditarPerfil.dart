@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -149,7 +149,8 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                                                 color: Colors.purple,
                                               ),
                                               onTap: () {
-                                                chooseImage(ImageSource.gallery);
+                                                chooseImage(
+                                                    ImageSource.gallery);
                                                 Navigator.of(context).pop();
                                               },
                                             ),
@@ -285,7 +286,7 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                 ),
                 TextButton(
                   child: Text(
-                    "Alterar senha?",
+                    "Alterar senha",
                     softWrap: true,
                     textAlign: TextAlign.center,
                     style: new TextStyle(
@@ -361,7 +362,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                   child: Container(),
                 ),
                 Container(
-
                   width: MediaQuery.of(context).size.width * 0.70,
                   margin: EdgeInsets.all(10),
                   height: 50.0,
