@@ -68,7 +68,6 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
           updateUserInfo(url);
           phoLoading = "";
         });
-
       } else if (taskSnapshot.state == TaskState.running) {
         setState(() {
           phoLoading = "Carregando...";
@@ -377,8 +376,10 @@ class _EditarPerfilPageViewState extends State<EditarPerfilPageView> {
                           }
 
                           _user = (await Authentication.refreshUser(_user))!;
-                          Navigator.pushNamed(
-                              context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              RouteGenerator.ROTA_CADASTRARIMAGEM,
+                              (Route<dynamic> route) => false);
                         });
                       },
                       style: ElevatedButton.styleFrom(
