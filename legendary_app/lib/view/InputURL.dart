@@ -10,6 +10,13 @@ class InputURL extends StatefulWidget {
 class _InputURLState extends State<InputURL> {
   String valor = "";
 
+  void _showMessage(BuildContext context, String text) {
+    final snackBar = SnackBar(
+      content: Text(text),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +41,7 @@ class _InputURLState extends State<InputURL> {
         body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Container(
+              height: MediaQuery.of(context).size.height,
               color: Color(0xffFFFFFF),
               alignment: Alignment.bottomCenter,
               child: Padding(
@@ -46,6 +54,7 @@ class _InputURLState extends State<InputURL> {
                         onFieldSubmitted: (String value) {
                           setState(() {
                             URL.url = value;
+                            _showMessage(context, 'A URL foi atualizada');
                           });
                         },
                         decoration: InputDecoration(
