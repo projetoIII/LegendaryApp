@@ -9,7 +9,7 @@ class Validator {
 
   static String? validateEmail({required String email}) {
     RegExp emailRegExp = RegExp(
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
+        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     if (email.isEmpty) {
       return 'O campo E-mail não pode estar vazio.';
