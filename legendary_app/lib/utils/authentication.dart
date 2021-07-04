@@ -1,14 +1,10 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:legendary_app/res/RouteGenerator.dart';
 import 'package:legendary_app/res/custom_colors.dart';
-import 'package:legendary_app/view/CarregarImagem.dart';
 
 class Authentication {
   static SnackBar customSnackBar({required String content}) {
@@ -29,7 +25,8 @@ class Authentication {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      Navigator.pushReplacementNamed(context, RouteGenerator.ROTA_CADASTRARIMAGEM);
+      Navigator.pushNamedAndRemoveUntil(context,
+          RouteGenerator.ROTA_CADASTRARIMAGEM, (Route<dynamic> route) => false);
     }
 
     return firebaseApp;
@@ -74,8 +71,7 @@ class Authentication {
           if (e.code == 'account-exists-with-different-credential') {
             ScaffoldMessenger.of(context).showSnackBar(
               Authentication.customSnackBar(
-                content:
-                    'A conta já existe com uma credencial diferente.',
+                content: 'A conta já existe com uma credencial diferente.',
               ),
             );
           } else if (e.code == 'invalid-credential') {
@@ -89,7 +85,8 @@ class Authentication {
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
             Authentication.customSnackBar(
-              content: 'Ocorreu um erro ao usar o Login do Google. Tente novamente.',
+              content:
+                  'Ocorreu um erro ao usar o Login do Google. Tente novamente.',
             ),
           );
         }
@@ -135,7 +132,8 @@ class Authentication {
         print('Nenhum usuário encontrado para esse e-mail.');
         ScaffoldMessenger.of(context).showSnackBar(
           Authentication.customSnackBar(
-            content: 'Nenhum usuário encontrado com este e-mail. Por favor, crie uma conta.',
+            content:
+                'Nenhum usuário encontrado com este e-mail. Por favor, crie uma conta.',
           ),
         );
       } else if (e.code == 'wrong-password') {
@@ -218,5 +216,3 @@ class Authentication {
     return refreshedUser;
   }
 }
-
-
