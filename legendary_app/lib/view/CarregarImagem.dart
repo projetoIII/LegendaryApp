@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:legendary_app/model/TagLista.dart';
 import 'package:legendary_app/model/URL.dart';
 import 'package:legendary_app/res/RouteGenerator.dart';
+import 'package:legendary_app/res/custom_colors.dart';
 import 'package:path/path.dart';
 
 class UploadImagePage extends StatefulWidget {
@@ -18,7 +19,6 @@ class UploadImagePage extends StatefulWidget {
 }
 
 class _UploadImagePageState extends State<UploadImagePage> {
-
   late File _imageFile;
   final auth = FirebaseAuth.instance;
   final picker = ImagePicker();
@@ -73,7 +73,9 @@ class _UploadImagePageState extends State<UploadImagePage> {
 
   void _showMessage(BuildContext context, String text) {
     final snackBar = SnackBar(
-      content: Text(text),
+      backgroundColor: CustomColors.white,
+      content: Text(text,
+          style: TextStyle(color: Colors.redAccent)),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
@@ -339,7 +341,12 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   left: MediaQuery.of(context).size.width / 2.35,
                   child: GestureDetector(
                     onTap: () {
-                      uploadImageToServer(context, _imageFile);
+                      if (isImagePicked == false) {
+                        _showMessage(context,
+                            "Por favor, selecione uma imagem.\n(Atualmente so funcionamos para Gatos e Cachorros!)");
+                      } else {
+                        uploadImageToServer(context, _imageFile);
+                      }
                     },
                     child: ClipOval(
                       child: Container(
