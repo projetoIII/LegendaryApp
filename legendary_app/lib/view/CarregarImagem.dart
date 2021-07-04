@@ -28,7 +28,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
 
   final TextEditingController _controller = new TextEditingController();
 
-  List<String> tags = ["superman", "sweetheart"];
+  List<String> tags = [];
   List<String> itensMenu = ["Perfil", "Favoritos", "URL", "Sair"];
 
   Future<bool> _exitApplication(BuildContext context) async {
